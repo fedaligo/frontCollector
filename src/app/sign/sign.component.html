@@ -1,0 +1,30 @@
+<div class="example-container">
+<mat-card class="example-card">
+
+  <h1>LOGIN:</h1>
+  <mat-form-field appearance="fill" >
+    <mat-label>Enter your Login</mat-label>
+    <input matInput >
+  </mat-form-field>
+  <br>
+  <h1>PASSWORD:</h1>
+  <mat-form-field appearance="fill">
+    <mat-label>Enter your password</mat-label>
+    <input matInput [type]="hide ? 'password' : 'text'">
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+  </mat-form-field>
+  <br>
+
+  <nav class="interval">
+    <button mat-raised-button [routerLink]="['/sign']" color="primary">Enter</button>
+    <span class="interval"><a routerLink="/admin">Registration</a></span>
+  </nav>
+  <nav>
+      <Img src="https://lh3.googleusercontent.com/pw/ACtC-3e6SGbkv92pm4iwBNMuf9OJpDfZMUexIHIFPN8M33gjAfqmpV5Y8_WP1lJoR41divm8KxZL4_fd95uzxAsa_-v1X8Yoj9teFFruq1ZZjCfzDMLP0dRR5MY5qoJ2tUs_0Ez0waKHJordtruehkqOmflN=s100-no?authuser=0" Height="50" width="50">
+    <Img src="https://lh3.googleusercontent.com/pw/ACtC-3fb4nXyJEAW29GSdCX5JwwEYC1Lij9uNZgd1ZDgN8aFgvclsRoajo44wViwl8Lry8_6VIWKKxocEVNn4AQpB2xKNLYSC7v19WbchjhGZSOlrHcs_y9mlWak50Vp9jedApRrseghcff5C_g1hEYV8zmF=s939-no?authuser=0" Height="48" width="48">
+  </nav>
+
+</mat-card>
+</div>

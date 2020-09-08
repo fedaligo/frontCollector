@@ -1,0 +1,35 @@
+<h1>All USERS:</h1>
+<div class="container">
+  <mat-table [dataSource]="allUsers" class="mat-elevation-z8">
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="login">
+      <mat-header-cell *matHeaderCellDef>Login</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.username}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="mail">
+      <mat-header-cell *matHeaderCellDef>Mail</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.mail}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="role">
+      <mat-header-cell *matHeaderCellDef>Role</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.role}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="button">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <div class="example-button-container">
+          <button mat-fab color="delete" aria-label="Example icon button with a bookmark icon">
+            <mat-icon>delete_forever</mat-icon>
+          </button>
+          <span class="example-spacer"> </span>
+          <button mat-button color="edit">EDIT</button>
+        </div>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

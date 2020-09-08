@@ -1,0 +1,28 @@
+h1 {
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.example-button-container {
+  margin: 0 auto;
+}
+
+.mat-delete {
+  background-color: #B22222;
+}
+
+.mat-edit {
+  background-color: #FFD700;
+  color: #000000;
+}
+
+.example-spacer {
+  margin-left: 10px;
+}

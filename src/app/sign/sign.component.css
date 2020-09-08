@@ -1,0 +1,28 @@
+.example-container {
+  margin-top: 10px;
+
+}
+.interval{
+  margin-left: 10px;
+  margin-bottom: 20px;
+}
+.example-right-align {
+  text-align: right;
+}
+
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+  display: none;
+}
+
+input.example-right-align {
+  -moz-appearance: textfield;
+}
+
+.example-card {
+  max-width: 400px;
+  background-size: cover;
+  text-align: center;
+  margin: 0 auto;
+}
+

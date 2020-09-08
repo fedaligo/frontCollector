@@ -1,0 +1,164 @@
+
+  <h1>{{svc.response1.name}}</h1>
+  <mat-grid-list cols="10" rowHeight="800px">
+    <mat-grid-tile
+      *ngIf="tiles[0]"
+      [colspan]="tiles[0].cols"
+      [rowspan]="tiles[0].rows" class="mylist-picture">
+      <mat-list class="mylist-picture">
+        <Img src="{{svc.response1.picture}}" Height="400">
+      </mat-list>
+    </mat-grid-tile>
+    <mat-grid-tile
+      *ngIf="tiles[1]"
+      [colspan]="tiles[1].cols"
+      [rowspan]="tiles[1].rows">
+
+      <mat-list role="list" class="mylist-coloumn-names">
+        <mat-list-item role="listitem" >
+          <b>Topic:</b>
+          <br>
+          {{svc.response1.topic}}
+        </mat-list-item>
+        <mat-list-item role="listitem">
+          <b>Cost:</b>
+          <br>{{svc.response1.cost}}$
+        </mat-list-item>
+        <mat-list-item role="listitem">
+          <b>Country:</b>
+          <br>
+          {{svc.response1.country}}
+        </mat-list-item>
+        <mat-list-item role="listitem">
+          <b>Release:</b>
+          <br>
+          {{svc.response1.release}}
+        </mat-list-item>
+        <div *ngIf="svc.response1.badges[0]">
+          <mat-list-item role="listitem">
+            <b>Material:</b>
+            <br>
+            {{svc.response1.badges[0].material}}
+          </mat-list-item>
+          <mat-list-item role="listitem">
+            <b>Kind:</b>
+            <br>
+            {{svc.response1.badges[0].kind}}
+          </mat-list-item>
+          <mat-list-item role="listitem">
+            <b>Fastening:</b>
+            <br>
+            {{svc.response1.badges[0].fastening}}
+          </mat-list-item>
+          <mat-list-item role="listitem">
+            <b>Tags:</b>
+            <br>
+            Tags:
+          </mat-list-item>
+        </div>
+        <div *ngIf="svc.response1.books[0]">
+          <mat-list-item role="listitem">
+            <b>Author:</b>
+            <br>
+            {{svc.response1.books[0].author}}
+          </mat-list-item>
+          <mat-list-item role="listitem">
+            <b>Pages:</b>
+            <br>
+            {{svc.response1.books[0].pages}}
+          </mat-list-item>
+          <mat-list-item role="listitem">
+            <b>Publishing House:</b>
+            <br>
+            {{svc.response1.books[0].publishingHouse}}
+          </mat-list-item>
+          <mat-list-item role="listitem">
+            <b>Tags:</b>
+            <br>
+            Tags:
+          </mat-list-item>
+        </div>
+        <div *ngIf="svc.response1.coins[0]">
+          <mat-list-item role="listitem">
+            <b>Kind:</b>
+            <br>
+            {{svc.response1.coins[0].kind}}
+          </mat-list-item>
+          <mat-list-item role="listitem">
+            <b>Size:</b>
+            <br>
+            {{svc.response1.coins[0].size}}
+          </mat-list-item>
+          <mat-list-item role="listitem">
+            <b>Metal:</b>
+            <br>
+            {{svc.response1.coins[0].metal}}
+          </mat-list-item>
+          <mat-list-item role="listitem">
+            <b>Tags:</b>
+            <br>
+            Tags:
+          </mat-list-item>
+        </div>
+        <div *ngIf="svc.response1.stamps[0]">
+          <mat-list-item role="listitem">
+            <b>Perforation:</b>
+            <br>
+            {{svc.response1.stamps[0].perforation}}
+          </mat-list-item>
+          <mat-list-item role="listitem">
+            <b>Value:</b>
+            <br>
+            {{svc.response1.stamps[0].value}}
+          </mat-list-item>
+          <mat-list-item role="listitem">
+            <b>Color:</b>
+            <br>
+            {{svc.response1.stamps[0].color}}
+          </mat-list-item>
+          <mat-list-item role="listitem">
+            <b>Tags:</b>
+            <br>
+            Tags:
+          </mat-list-item>
+        </div>
+        <div *ngIf="svc.response1.wine[0]">
+          <mat-list-item role="listitem">
+            <b>Alcohol:</b>
+            <br>
+            {{svc.response1.wine[0].alcohol}}
+          </mat-list-item>
+          <mat-list-item role="listitem">
+            <b>Sugar:</b>
+            <br>
+            {{svc.response1.wine[0].sugar}}gr.
+          </mat-list-item>
+          <mat-list-item role="listitem">
+            <b>Kind:</b>
+            <br>
+            {{svc.response1.wine[0].kind}}
+          </mat-list-item>
+          <mat-list-item role="listitem">
+            <b>Tags:</b>
+            <br>
+            Tags:
+          </mat-list-item>
+        </div>
+        <mat-list-item role="listitem" >
+          <b>Info:</b>
+          <br>
+          {{svc.response1.info}}
+        </mat-list-item>
+      </mat-list>
+    </mat-grid-tile>
+
+    <mat-grid-tile
+      *ngIf="tiles[2]"
+      [colspan]="tiles[2].cols"
+      [rowspan]="tiles[2].rows" class="mylist-picture">
+      <mat-list >
+
+      </mat-list>
+    </mat-grid-tile>
+  </mat-grid-list>
+

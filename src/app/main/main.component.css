@@ -1,17 +1,32 @@
 .container {
-  max-width: 1000px;
+  max-width: 80%;
   margin: 0 auto;
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
-.bg1 { background-color:#FFFFE0; height: 100%;}
-.bg2 { background-color:#7B68EE; height: 100%;}
-
-
 h1 {
   text-align: center;
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
+
+.mat-column-picture{
+  flex: 0 0 15%;
+}
+
+.mat-column-name{
+  margin-right: 1%;
+  flex: 0 0 15%;
+}
+
+.mat-column-info{
+  margin-right: 1%;
+  flex: 0 0 25%;
+}
+
+.mat-column-button{
+  margin-left: 1%;
+  flex: 0 0 10%;
 }
 
 .mat-form-field + .mat-form-field {
