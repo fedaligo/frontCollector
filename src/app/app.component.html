@@ -21,8 +21,8 @@
     </mat-form-field>
     <button mat-raised-button (click)="svc.findInfoByWord(value)" [routerLink]="['/searchitems']">Search</button>
     <span class="example-spacer"></span>
-    <div *ngIf="token"><button mat-raised-button [routerLink]="['/sign']">Logout</button></div>
-    <div *ngIf="!token"><button mat-raised-button [routerLink]="['/sign']">Sign in</button></div>
+    <div *ngIf="service.getTokenFromLocalStorage()"><button mat-raised-button (click)="service.logout()" [routerLink]="['/sign']">Logout</button></div>
+    <div *ngIf="!service.getTokenFromLocalStorage()"><button mat-raised-button [routerLink]="['/sign']">Sign in</button></div>
 
   </mat-toolbar-row>
 </mat-toolbar>

@@ -5,6 +5,7 @@ import {Tags} from '../entity/tags';
 import {HttpClient} from '@angular/common/http';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import {SearchServiceService} from '../search-service.service';
+import {RestapiService} from '../restapi.service';
 
 export interface Tile {
   cols: number;
@@ -24,15 +25,15 @@ export class MainComponent {
   lastThreeItems: LastThreeItems[];
   greatestCollections: GreatestCollections[];
   allTags: Tags[];
-  constructor(private http: HttpClient, public svc: SearchServiceService) {
-    this.http.get<LastThreeItems[]>('http://localhost:5000/lastthreeitems').subscribe(result => {
+  constructor(private http: HttpClient, public svc: SearchServiceService, public service: RestapiService) {
+    this.http.get<LastThreeItems[]>('http://localhost:5000/collection/lastthreeitems').subscribe(result => {
       this.lastThreeItems = result;
       console.log(result[0]);
     });
-    this.http.get<GreatestCollections[]>('http://localhost:5000/threegreatestcollections').subscribe( result => {
+    this.http.get<GreatestCollections[]>('http://localhost:5000/collection/threegreatestcollections').subscribe( result => {
       this.greatestCollections = result;
     });
-    this.http.get<Tags[]>('http://localhost:5000/alltags').subscribe(result => {
+    this.http.get<Tags[]>('http://localhost:5000/tags/alltags').subscribe(result => {
       this.allTags = result;
     });
   }

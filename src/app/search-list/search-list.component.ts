@@ -7,6 +7,9 @@ import {SearchServiceService} from '../search-service.service';
   styleUrls: ['./search-list.component.css']
 })
 export class SearchListComponent{
+  findAllItem: any;
   displayedColumns: string[] = ['picture', 'topic', 'name', 'country', 'release', 'cost', 'info', 'button'];
-  constructor(public svc: SearchServiceService) { }
+  constructor(public svc: SearchServiceService) {
+    this.findAllItem = svc.findAllItem();
+  }
 }

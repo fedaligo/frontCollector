@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {SearchServiceService} from './search-service.service';
+import {RestapiService} from './restapi.service';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,7 @@ export class AppComponent {
   value = '';
   public isChecked = true;
   mycolor: string[] = ['dark theme', 'light theme'];
-  constructor(public svc: SearchServiceService) {
+  constructor(public svc: SearchServiceService, public service: RestapiService) {
   }
 }
 

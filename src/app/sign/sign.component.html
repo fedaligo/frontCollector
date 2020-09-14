@@ -1,30 +1,33 @@
 <div class="example-container">
 <mat-card class="example-card">
-
+<form id="accesspanel" action="">
   <h1>LOGIN:</h1>
   <mat-form-field appearance="fill" >
     <mat-label>Enter your Login</mat-label>
-    <input matInput >
+    <input matInput type="text" name="userName"  [(ngModel)]="userName" id="username">
   </mat-form-field>
   <br>
   <h1>PASSWORD:</h1>
   <mat-form-field appearance="fill">
     <mat-label>Enter your password</mat-label>
-    <input matInput [type]="hide ? 'password' : 'text'">
-    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+    <input matInput type="password" name="password"  [(ngModel)]="password" id="password" [type]="hide ? 'password' : 'text'">
+    <button mat-icon-button matSuffix  (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
       <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </button>
   </mat-form-field>
   <br>
 
   <nav class="interval">
-    <button mat-raised-button [routerLink]="['/sign']" color="primary">Enter</button>
+    <button mat-raised-button type="submit" name="Login" id="go" value="Login" (click)="doLogin()"  color="primary">Enter</button>
     <span class="interval"><a routerLink="/admin">Registration</a></span>
   </nav>
+</form>
   <nav>
-      <Img src="https://lh3.googleusercontent.com/pw/ACtC-3e6SGbkv92pm4iwBNMuf9OJpDfZMUexIHIFPN8M33gjAfqmpV5Y8_WP1lJoR41divm8KxZL4_fd95uzxAsa_-v1X8Yoj9teFFruq1ZZjCfzDMLP0dRR5MY5qoJ2tUs_0Ez0waKHJordtruehkqOmflN=s100-no?authuser=0" Height="50" width="50">
-    <Img src="https://lh3.googleusercontent.com/pw/ACtC-3fb4nXyJEAW29GSdCX5JwwEYC1Lij9uNZgd1ZDgN8aFgvclsRoajo44wViwl8Lry8_6VIWKKxocEVNn4AQpB2xKNLYSC7v19WbchjhGZSOlrHcs_y9mlWak50Vp9jedApRrseghcff5C_g1hEYV8zmF=s939-no?authuser=0" Height="48" width="48">
+    <Img src="https://lh3.googleusercontent.com/pw/ACtC-3eiaTyEjBbyTRs_daUEhb4RomnUGFEYV62R9s8MewtW1ah3GUbZ5wQDEfed7oAR_8w8Up4X2414fC6isAgyTKr665ODa069vF_E7mIIr-HNP8BXOD5-svucEO27FDK_5e_NAGT-FerNLitwxn3fBbzH=s100-no?authuser=0" Height="52" width="52" [routerLink]="['/oauth2/authorization/google']">
+    <Img src="https://lh3.googleusercontent.com/pw/ACtC-3cDtF-d1YgApCuKtrSTEN1unRChJePTl4qHlQl4CQxlqW6EAnnrM94u7IjsZopx-ASLmnBaATdRn-7CAV5XNykt2bnJRFTiOES9z93nSXIJwvEvplyA9ctHxRCweDQHJ7QIyJkXZVy9eBbDnZu_VYLz=s939-no?authuser=0" Height="50" width="50" [routerLink]="['/admin']">
   </nav>
-
+  {{service.token}}
 </mat-card>
 </div>
+
+

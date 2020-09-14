@@ -25,12 +25,15 @@ import {MatCardModule} from '@angular/material/card';
 import {Routes, RouterModule} from '@angular/router';
 import { MainComponent } from './main/main.component';
 import { SignComponent } from './sign/sign.component';
-import {SearchServiceService} from './search-service.service';
 import { SearchListComponent } from './search-list/search-list.component';
 import { ShowItemComponent } from './show-item/show-item.component';
 
+import {SearchServiceService} from './search-service.service';
+import { RestapiService} from './restapi.service';
+
 const appRoutes: Routes = [
   { path: '', component: MainComponent},
+  { path: 'rdr', redirectTo: 'sign', pathMatch: 'full'},
   { path: 'sign', component: SignComponent},
   { path: 'searchitems', component: SearchListComponent},
   { path: 'showitem', component: ShowItemComponent},
@@ -67,7 +70,9 @@ const appRoutes: Routes = [
     MatFormFieldModule,
     MatCardModule
   ],
-  providers: [SearchServiceService],
+  providers: [
+    SearchServiceService,
+    RestapiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

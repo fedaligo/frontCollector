@@ -41,7 +41,45 @@
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
 </div>
-<div *ngIf="!svc.response">
-  <h1>Not found!</h1>
+<div class="container" *ngIf="!svc.response">
+  <mat-table [dataSource]="findAllItem" class="mat-elevation-z8">
+    <ng-container matColumnDef="picture" class="mat-column-picture">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let element"> <Img src="{{element.picture}}" Height="150"> </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="topic" >
+      <mat-header-cell *matHeaderCellDef>TOPIC</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.topic}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="name" class="mat-column-name">
+      <mat-header-cell *matHeaderCellDef>NAME</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.name}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="country">
+      <mat-header-cell *matHeaderCellDef>COUNTRY</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.country}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="release">
+      <mat-header-cell *matHeaderCellDef>RELEASE</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.release}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="cost">
+      <mat-header-cell *matHeaderCellDef>COST</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.cost}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="info" class="mat-column-info">
+      <mat-header-cell *matHeaderCellDef>INFO</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.info}}</mat-cell>
+    </ng-container>u
+    <ng-container matColumnDef="button" class="mat-column-button">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <span class="example-spacer"></span>
+        <button mat-raised-button (click)="svc.findItemById(element.id)" [routerLink]="['/showitem']">More details</button>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
 </div>
 
