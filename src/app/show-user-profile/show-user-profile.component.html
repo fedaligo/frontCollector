@@ -1,0 +1,29 @@
+<div class="show-profile">
+  <table class="info-table">
+    <tr>
+      <td><h2>{{service.userProfile[1]}}</h2></td>
+      <td>{{service.responseAnotherUserByUserName.username}}</td>
+    </tr>
+    <tr>
+      <td><h2>{{service.userProfile[3]}}</h2></td>
+      <td>{{service.responseAnotherUserByUserName.mail}}</td>
+    </tr>
+    <tr>
+      <td><h2>{{service.userProfile[4]}}</h2></td>
+      <td>{{service.responseAnotherUserByUserName.role}}</td>
+    </tr>
+    <tr>
+      <td><h2>{{service.userProfile[5]}}</h2></td>
+      <td>
+        {{svc.responseFindItemsOfAnotherUserName.length}}
+      </td>
+    </tr>
+  </table>
+  <div class=".center">
+    <button mat-raised-button color="primary" (click)="service.setMailLocalStorage()" [routerLink]="['/editanotherprofile']">
+      EDIT profile
+    </button>
+    <button mat-raised-button [routerLink]="['/myitems']" (click)="svc.findItemsOfAnotherUserName(service.responseAnotherUserByUserName.username)">Show items</button>
+  </div>
+</div>
+

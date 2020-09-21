@@ -13,7 +13,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatTableModule} from '@angular/material/table';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { CdkTableModule } from '@angular/cdk/table';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatGridListModule} from '@angular/material/grid-list';
@@ -30,6 +30,19 @@ import { ShowItemComponent } from './show-item/show-item.component';
 
 import {SearchServiceService} from './search-service.service';
 import { RestapiService} from './restapi.service';
+import { AllCollectionsComponent } from './all-collections/all-collections.component';
+import { AllItemsComponent } from './all-items/all-items.component';
+import { MyItemsComponent } from './my-items/my-items.component';
+import { MyCollectionsComponent } from './my-collections/my-collections.component';
+import { ItemsComponent } from './items/items.component';
+import { SettingsComponent } from './settings/settings.component';
+import { RegistrationComponent } from './registration/registration.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { ShowUserProfileComponent } from './show-user-profile/show-user-profile.component';
+import { ShowAnotherUserProfileComponent } from './show-another-user-profile/show-another-user-profile.component';
+import { AboutComponent } from './about/about.component';
+
 
 const appRoutes: Routes = [
   { path: '', component: MainComponent},
@@ -37,6 +50,17 @@ const appRoutes: Routes = [
   { path: 'sign', component: SignComponent},
   { path: 'searchitems', component: SearchListComponent},
   { path: 'showitem', component: ShowItemComponent},
+  { path: 'allitems', component: AllItemsComponent},
+  { path: 'settings', component: SettingsComponent},
+  { path: 'registration', component: RegistrationComponent},
+  { path: 'editprofile', component: EditProfileComponent},
+  { path: 'showuserprofile', component: ShowUserProfileComponent},
+  { path: 'editanotherprofile', component: ShowAnotherUserProfileComponent},
+  { path: 'mycollections', component: MyCollectionsComponent},
+  { path: 'myitems', component: MyItemsComponent},
+  { path: 'items', component: ItemsComponent},
+  { path: 'allcollections', component: AllCollectionsComponent},
+  { path: 'about', component: AboutComponent},
   { path: 'admin', component: AdminComponent}
 ];
 
@@ -47,29 +71,42 @@ const appRoutes: Routes = [
     MainComponent,
     SignComponent,
     SearchListComponent,
-    ShowItemComponent
+    ShowItemComponent,
+    AllCollectionsComponent,
+    AllItemsComponent,
+    MyItemsComponent,
+    MyCollectionsComponent,
+    ItemsComponent,
+    SettingsComponent,
+    RegistrationComponent,
+    EditProfileComponent,
+    ShowUserProfileComponent,
+    ShowAnotherUserProfileComponent,
+    AboutComponent
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    MatSliderModule,
-    BrowserAnimationsModule,
-    MatButtonModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatTableModule,
-    CdkTableModule,
-    MatSlideToggleModule,
-    FormsModule,
-    MatInputModule,
-    MatExpansionModule,
-    MatGridListModule,
-    MatListModule,
-    MatChipsModule,
-    RouterModule.forRoot(appRoutes),
-    MatFormFieldModule,
-    MatCardModule
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        MatSliderModule,
+        BrowserAnimationsModule,
+        MatButtonModule,
+        MatIconModule,
+        MatToolbarModule,
+        MatTableModule,
+        CdkTableModule,
+        MatSlideToggleModule,
+        FormsModule,
+        MatInputModule,
+        MatExpansionModule,
+        MatGridListModule,
+        MatListModule,
+        MatChipsModule,
+        RouterModule.forRoot(appRoutes),
+        MatFormFieldModule,
+        MatCardModule,
+        ReactiveFormsModule,
+        MatAutocompleteModule
+    ],
   providers: [
     SearchServiceService,
     RestapiService],

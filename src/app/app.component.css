@@ -4,8 +4,8 @@
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
-.bg1 { background-color:#FFFFE0; height: 100%;}
-.bg2 { background-color:#7B68EE; height: 100%;}
+.bg1 { background-color:#FFFFE0; min-height: 100%;}
+.bg2 { background-color:#7B68EE; min-height: 100%;}
 
 
 h1 {

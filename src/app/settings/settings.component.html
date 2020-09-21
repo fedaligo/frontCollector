@@ -1,0 +1,43 @@
+<div *ngIf="service.role" class="container">
+  <button mat-raised-button color="delete" [routerLink]="['/admin']">
+    Go to USER management settings
+  </button>
+</div>
+
+
+<div *ngIf="service.responseUserByUserName" class="show-profile">
+  <table class="info-table">
+    <tr>
+      <td><h2>{{service.userProfile[1]}}</h2></td>
+      <td>{{service.responseUserByUserName.username}}</td>
+    </tr>
+    <tr>
+      <td><h2>{{service.userProfile[3]}}</h2></td>
+      <td>{{service.responseUserByUserName.mail}}</td>
+    </tr>
+    <tr>
+      <td><h2>{{service.userProfile[4]}}</h2></td>
+      <td>{{service.responseUserByUserName.role}}</td>
+    </tr>
+    <tr>
+      <td><h2>{{service.userProfile[5]}}</h2></td>
+      <td>
+        {{svc.responseFindItemsByUserName.length}}
+      </td>
+    </tr>
+  </table>
+  <div class=".center">
+    <button mat-raised-button color="primary" (click)="service.setMailLocalStorage()" [routerLink]="['/editprofile']">
+      EDIT profile
+    </button>
+    <button mat-raised-button [routerLink]="['/myitems']" (click)="svc.findItemsOfAnotherUserName(service.responseUserByUserName.username)">Show items</button>
+  </div>
+</div>
+<div *ngIf="!service.responseUserByUserName" class="show-text">
+  <h1>Please go through the authentication procedure again!</h1>
+  <button mat-raised-button [routerLink]="['/sign']">Sign in</button>
+</div>
+
+
+
+

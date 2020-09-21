@@ -1,0 +1,75 @@
+<div class="edit-profile">
+  <table class="info-table">
+    <tr>
+      <td><h2>{{service.userProfile[1]}}</h2></td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="UserName" maxlength="50" type="text" name="userName"
+                 [formControl]="loginFormControl" [(ngModel)]="service.updateAnotherUserName"
+                 id="userName">
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td><h2>{{service.userProfile[2]}}</h2></td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Password" maxlength="50" type="password" name="password"
+                 [formControl]="passwordFormControl" [(ngModel)]="service.password"
+                 id="password">
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td><h2>{{service.userProfile[3]}}</h2></td>
+      <td>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Mail" maxlength="50" type="text" [formControl]="emailFormControl"
+                 [(ngModel)]="service.anotherMail">
+        </mat-form-field>
+      </td>
+    </tr>
+    <tr>
+      <td><h2>{{service.userProfile[4]}}</h2></td>
+      <td>
+        <div *ngIf="service.getRoleFromLocalStorage()">
+          <mat-form-field class="example-full-width">
+            <input type="text"
+                   placeholder="Role"
+                   aria-label="Number"
+                   matInput
+                   [formControl]="roleFormControl"
+                   [matAutocomplete]="auto"
+            [(ngModel)]="roleUser">
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let option of options; let us = index" [value]="option">
+                {{option}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+        <div *ngIf="!service.getRoleFromLocalStorage()">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Role" readonly type="text" [formControl]="roleFormControl"
+                   [(ngModel)]="roleUser">
+          </mat-form-field>
+        </div>
+      </td>
+    </tr>
+  </table>
+  <div class=".center">
+    <div *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')
+      || !emailFormControl.hasError('email') && emailFormControl.hasError('required')
+      || passwordFormControl.hasError('required') || loginFormControl.hasError('required')
+|| roleFormControl.hasError('required')">
+      <button mat-raised-button disabled>SAVE profile</button>
+    </div>
+    <div *ngIf="!emailFormControl.hasError('email') && !emailFormControl.hasError('required')
+&& !passwordFormControl.hasError('required') && !loginFormControl.hasError('required')
+&& !roleFormControl.hasError('required')">
+      <button mat-raised-button color="primary" (click)="updateUser(); service.anotherUserByUserName(service.updateAnotherUserName)" [routerLink]="['/showuserprofile']">
+        SAVE profile
+      </button>
+    </div>
+  </div>
+</div>

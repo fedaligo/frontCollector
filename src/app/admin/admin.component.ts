@@ -15,12 +15,8 @@ import {RestapiService} from '../restapi.service';
 })
 export class AdminComponent {
   response: any;
-  displayedColumns: string[] = ['id', 'login', 'mail', 'role', 'button'];
-  allUsers: Users[];
+  displayedColumns: string[] = ['login', 'mail', 'role', 'button'];
   constructor(private http: HttpClient, public svc: SearchServiceService, public service: RestapiService) {
-    const headers = new HttpHeaders({Authorization: `Bearer ${service.getTokenFromLocalStorage()}`});
-    this.http.get<Users[]>('http://localhost:5000/users/allusers', {headers}).subscribe(result => {
-      this.allUsers = result;
-    });
+    service.getAllUsers();
   }
 }

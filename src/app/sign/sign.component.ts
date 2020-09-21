@@ -10,10 +10,11 @@ export class SignComponent {
   hide = true;
   userName: string;
   password: string;
-  message: any;
+  message: any = 'Incorrect login or password.';
   allUsers: any;
   displayedColumns: string[] = ['id', 'login', 'mail', 'role', 'button'];
   constructor(public service: RestapiService) {
+    this.service.message = '';
   }
   doLogin(){
     const resp = this.service.login(this.userName, this.password);

@@ -1,10 +1,7 @@
+
 <h1>All USERS:</h1>
 <div class="container">
-  <mat-table [dataSource]="allUsers" class="mat-elevation-z8">
-    <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
-    </ng-container>
+  <mat-table [dataSource]="service.allUsers" class="mat-elevation-z8">
     <ng-container matColumnDef="login">
       <mat-header-cell *matHeaderCellDef>Login</mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.username}} </mat-cell>
@@ -21,11 +18,11 @@
       <mat-header-cell *matHeaderCellDef></mat-header-cell>
       <mat-cell *matCellDef="let element">
         <div class="example-button-container">
-          <button mat-fab color="delete" aria-label="Example icon button with a bookmark icon">
+          <button mat-fab color="delete" aria-label="Example icon button with a bookmark icon" (click)="service.deleteUser(element.id)" >
             <mat-icon>delete_forever</mat-icon>
           </button>
           <span class="example-spacer"> </span>
-          <button mat-button color="edit">EDIT</button>
+          <button mat-button color="edit" (click)="service.anotherUserByUserName(element.username)" [routerLink]="['/showuserprofile']">EDIT</button>
         </div>
       </mat-cell>
     </ng-container>

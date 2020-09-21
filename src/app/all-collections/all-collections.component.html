@@ -1,0 +1,26 @@
+<h1><b >ALL EXISTING COLLECTIONS:</b></h1>
+<div class="container">
+  <mat-table [dataSource]="allCollections" class="mat-elevation-z8">
+    <ng-container matColumnDef="login">
+      <mat-header-cell *matHeaderCellDef>User name</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element[3]}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="topic">
+      <mat-header-cell *matHeaderCellDef>Topic</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element[1]}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="count">
+      <mat-header-cell *matHeaderCellDef>Count of Items</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element[2]}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="button">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <span class="example-spacer"></span>
+        <button mat-raised-button (click)="svc.findItemByTopicAndUserName(element[1],element[3])" [routerLink]="['/items']">More details</button>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

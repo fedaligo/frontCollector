@@ -1,12 +1,12 @@
-<div  [class]="isChecked ? 'bg1' : 'bg2'">
-  <mat-toolbar [color]="isChecked ? 'accent' : 'primary'">
+<div  [class]="getColorBackGround()">
+  <mat-toolbar [color]="getColorTolbar()">
   <mat-toolbar-row>
       <span>
-          <button mat-flat-button [color]="isChecked ? 'accent' : 'primary'"
+          <button mat-flat-button [color]="getColorTolbar()"
                   [routerLink]="['']"><h1>Collector</h1></button>
       </span>
     <span class="theme"></span>
-    <mat-slide-toggle [(ngModel)]="isChecked">
+    <mat-slide-toggle [(ngModel)]="isChecked" (ngModelChange)="setColorTolbar();setColorBackGround()">
       <div *ngIf="isChecked">{{mycolor[1]}}</div>
       <div *ngIf="!isChecked">{{mycolor[0]}}</div>
     </mat-slide-toggle>
@@ -21,10 +21,35 @@
     </mat-form-field>
     <button mat-raised-button (click)="svc.findInfoByWord(value)" [routerLink]="['/searchitems']">Search</button>
     <span class="example-spacer"></span>
-    <div *ngIf="service.getTokenFromLocalStorage()"><button mat-raised-button (click)="service.logout()" [routerLink]="['/sign']">Logout</button></div>
-    <div *ngIf="!service.getTokenFromLocalStorage()"><button mat-raised-button [routerLink]="['/sign']">Sign in</button></div>
+    <div *ngIf="service.getTokenFromLocalStorage()">
+      {{service.getUserNameFromLocalStorage()}}
+      <button mat-raised-button (click)="service.logout()" [routerLink]="['/sign']">Logout</button>
+    </div>
+    <div *ngIf="!service.getTokenFromLocalStorage()">
+      <button mat-raised-button [routerLink]="['/sign']">Sign in</button>
+    </div>
 
   </mat-toolbar-row>
+    <mat-toolbar-row>
+
+      <button mat-flat-button [color]="getColorTolbar()"
+              [routerLink]="['/allcollections']">Show all collections</button>
+      <button mat-flat-button [color]="getColorTolbar()"
+              [routerLink]="['/allitems']">Show all items</button>
+      <button mat-flat-button [color]="getColorTolbar()"
+              [routerLink]="['/about']">About</button>
+      <span class="example-spacer"></span>
+      <div *ngIf="service.getTokenFromLocalStorage()">
+        <button mat-flat-button [color]="getColorTolbar()"
+                [routerLink]="['/myitems']" (click)="svc.findItemsByUserName()">
+          My items</button>
+        <button mat-flat-button [color]="getColorTolbar()"
+                [routerLink]="['/mycollections']" (click)="svc.findCollectionsByUserName()">
+          My collections</button>
+        <button mat-flat-button [color]="getColorTolbar()"
+                [routerLink]="['/settings']" (click)="svc.findItemsByUserName()">Settings</button>
+      </div>
+    </mat-toolbar-row>
 </mat-toolbar>
 
   <router-outlet></router-outlet>

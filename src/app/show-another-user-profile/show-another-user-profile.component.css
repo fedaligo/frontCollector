@@ -1,0 +1,33 @@
+h2{
+  text-align: right;
+  margin-right: 5%;
+}
+
+.mat-delete {
+  background-color: #B22222;
+  color: white;
+}
+
+.container {
+  text-align: center;
+  margin-top: 3rem;
+
+}
+.info-table {
+  margin-top: 3rem;
+
+  width: 80%;
+}
+.\.center{
+  text-align: center;
+}
+
+.show-profile{
+
+}
+.edit-profile{
+
+}
+.example-full-width {
+  width: 100%;
+}

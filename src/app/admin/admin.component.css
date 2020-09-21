@@ -1,10 +1,11 @@
+
 h1 {
   text-align: center;
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
 .container {
-  max-width: 1000px;
+  max-width: 80%;
   margin: 0 auto;
   margin-top: 1rem;
   margin-bottom: 1rem;

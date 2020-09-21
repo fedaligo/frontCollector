@@ -1,0 +1,57 @@
+<div class="example-container">
+  <mat-card class="example-card">
+    <form id="accesspanel" action="">
+      <h1>REGISTRATION:</h1>
+      <mat-form-field class="example-full-width">
+        <mat-label>Enter your Login</mat-label>
+        <input matInput #loginmessage maxlength="50" type="text" name="userName" [formControl]="loginFormControl" [(ngModel)]="userName"
+               id="userName">
+        <mat-hint align="end">{{loginmessage.value.length}} / 50</mat-hint>
+        <mat-error *ngIf="loginFormControl.hasError('required')">
+          Login is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="example-full-width">
+        <mat-label>Enter your password</mat-label>
+        <input matInput #passwordmessage maxlength="50" type="password" name="password" [formControl]="passwordFormControl" [(ngModel)]="password"
+               id="password">
+        <mat-hint align="end">{{passwordmessage.value.length}} / 50</mat-hint>
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="passwordFormControl.hasError('required')">
+          Password is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <br>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Email</mat-label>
+        <input matInput #mailmessage maxlength="50" [formControl]="emailFormControl" placeholder="example@example.com" [(ngModel)]="mail">
+        <mat-hint align="end">{{mailmessage.value.length}} / 50</mat-hint>
+        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+
+      <div *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')
+      || !emailFormControl.hasError('email') && emailFormControl.hasError('required')
+      || passwordFormControl.hasError('required') || loginFormControl.hasError('required')">
+        <button mat-raised-button disabled>Create a new USER</button>
+      </div>
+      <div *ngIf="!emailFormControl.hasError('email') && !emailFormControl.hasError('required')
+&& !passwordFormControl.hasError('required') && !loginFormControl.hasError('required')">
+        <button mat-raised-button color="primary" (click)="doRegistration()" [routerLink]="[service.registrationMessage?'/sign':'/registration']" >Create a new USER</button>
+      </div>
+      <div class=".redtext">{{service.registrationMessage}}</div>
+    </form>
+  </mat-card>
+</div>
+
+

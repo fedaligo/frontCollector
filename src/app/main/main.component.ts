@@ -28,7 +28,6 @@ export class MainComponent {
   constructor(private http: HttpClient, public svc: SearchServiceService, public service: RestapiService) {
     this.http.get<LastThreeItems[]>('http://localhost:5000/collection/lastthreeitems').subscribe(result => {
       this.lastThreeItems = result;
-      console.log(result[0]);
     });
     this.http.get<GreatestCollections[]>('http://localhost:5000/collection/threegreatestcollections').subscribe( result => {
       this.greatestCollections = result;
