@@ -43,7 +43,7 @@ export class RestapiService {
     this.message = '';
     const body = {userName, password};
     const headers = new HttpHeaders({Authorization: 'Basic ' + btoa(userName + ':' + password)});
-    this.http.post('http://localhost:5000/users/authenticate', body, {headers, responseType: 'text' as 'json'}).subscribe((response) => {
+    this.http.post('https://collector-fed.herokuapp.com/users/authenticate', body, {headers, responseType: 'text' as 'json'}).subscribe((response) => {
 
       if (response !== '') {
         this.token = response;
@@ -79,14 +79,14 @@ export class RestapiService {
 
   getAllUsers() {
     const headers = new HttpHeaders({Authorization: `Bearer ${this.getTokenFromLocalStorage()}`});
-    this.http.get<Users[]>('http://localhost:5000/users/allusers', {headers}).subscribe((response) => {
+    this.http.get<Users[]>('https://collector-fed.herokuapp.com/users/allusers', {headers}).subscribe((response) => {
       this.allUsers = response;
     });
   }
 
   getRole() {
     const headers = new HttpHeaders({Authorization: `Bearer ${this.getTokenFromLocalStorage()}`});
-    this.http.get('http://localhost:5000/users/usersrole', {headers, responseType: 'text' as 'json'}).subscribe((response) => {
+    this.http.get('https://collector-fed.herokuapp.com/users/usersrole', {headers, responseType: 'text' as 'json'}).subscribe((response) => {
       if (response === '[admin]') {
         this.role = response;
         localStorage.setItem('roleAdmin', this.role);
@@ -100,7 +100,7 @@ export class RestapiService {
 
   registration(userName: string, password: string, mail: string) {
     const body = {userName, password, mail};
-    this.http.post('http://localhost:5000/users/registration', body, {responseType: 'text' as 'json'}).subscribe((response) => {
+    this.http.post('https://collector-fed.herokuapp.com/users/registration', body, {responseType: 'text' as 'json'}).subscribe((response) => {
       if (response !== ''){
         this.registrationMessage = response;
       }
@@ -112,7 +112,7 @@ export class RestapiService {
       this.logout();
     }
     const body = {userId: this.id, userName: this.updateUserName, password: this.password, mail: this.mail, usersRole: role};
-    this.http.put('http://localhost:5000/users/updateuser', body, {responseType: 'text' as 'json'}).subscribe((response) => {
+    this.http.put('https://collector-fed.herokuapp.com/users/updateuser', body, {responseType: 'text' as 'json'}).subscribe((response) => {
       if (response !== ''){
         this.updateMessage = response;
         this.userByUserName();
@@ -122,7 +122,7 @@ export class RestapiService {
 
   updateAnotherUser(role: string) {
     const body = {userId: this.anotherId, userName: this.updateAnotherUserName, password: this.password, mail: this.anotherMail, usersRole: role};
-    this.http.put('http://localhost:5000/users/updateuser', body, {responseType: 'text' as 'json'}).subscribe((response) => {
+    this.http.put('https://collector-fed.herokuapp.com/users/updateuser', body, {responseType: 'text' as 'json'}).subscribe((response) => {
       if (response !== ''){
         this.updateMessage = response;
         localStorage.removeItem('anotherUserName');
@@ -134,7 +134,7 @@ export class RestapiService {
 
   deleteUser(id) {
     const headers = new HttpHeaders({Authorization: `Bearer ${this.getTokenFromLocalStorage()}`});
-    this.http.delete('http://localhost:5000/users/delete/' + id, {headers, responseType: 'text' as 'json'}).subscribe((response) => {
+    this.http.delete('https://collector-fed.herokuapp.com/users/delete/' + id, {headers, responseType: 'text' as 'json'}).subscribe((response) => {
       this.deleteMessage = response;
       this.getAllUsers();
     });
@@ -143,7 +143,7 @@ export class RestapiService {
   isOwnerOrAdmin() {
     this.responseIsOwnerOrAdmin = null;
     const headers = new HttpHeaders({Authorization: `Bearer ${this.getTokenFromLocalStorage()}`});
-    this.http.get('http://localhost:5000/users/isowneroradmin?id=' + localStorage.getItem('itemId'),
+    this.http.get('https://collector-fed.herokuapp.com/users/isowneroradmin?id=' + localStorage.getItem('itemId'),
       {headers}).subscribe((response) => {
       if (response === true) {
         this.responseIsOwnerOrAdmin = response;
@@ -152,14 +152,14 @@ export class RestapiService {
   }
 
   ownerName() {
-    this.http.get('http://localhost:5000/users/ownername?id=' + localStorage.getItem('itemId'), {responseType: 'text' as 'json'}).subscribe((response) => {
+    this.http.get('https://collector-fed.herokuapp.com/users/ownername?id=' + localStorage.getItem('itemId'), {responseType: 'text' as 'json'}).subscribe((response) => {
         this.ownerUserName = response;
         localStorage.setItem('ownerName', this.ownerUserName);
     });
   }
 
   userByUserName() {
-    this.http.get('http://localhost:5000/users/userbyusername?userName=' + localStorage.getItem('currentUser')).subscribe((response) => {
+    this.http.get('https://collector-fed.herokuapp.com/users/userbyusername?userName=' + localStorage.getItem('currentUser')).subscribe((response) => {
       this.responseUserByUserName = response;
       this.mail = this.responseUserByUserName.mail;
       this.updateUserName = this.responseUserByUserName.username;
@@ -169,7 +169,7 @@ export class RestapiService {
 
   anotherUserByUserName(userName) {
     localStorage.setItem('anotherUserName', userName);
-    this.http.get('http://localhost:5000/users/userbyusername?userName=' + userName).subscribe((response) => {
+    this.http.get('https://collector-fed.herokuapp.com/users/userbyusername?userName=' + userName).subscribe((response) => {
       this.responseAnotherUserByUserName = response;
       this.anotherMail = this.responseAnotherUserByUserName.mail;
       this.updateAnotherUserName = this.responseAnotherUserByUserName.username;
@@ -187,7 +187,7 @@ export class RestapiService {
     const idCollection = localStorage.getItem('itemId');
     const authHeader = `Bearer ${this.getTokenFromLocalStorage()}`;
     const body = {idCollection, authHeader};
-    this.http.post('http://localhost:5000/likes/addlike', body, {responseType: 'text' as 'json'}).subscribe((response) => {
+    this.http.post('https://collector-fed.herokuapp.com/likes/addlike', body, {responseType: 'text' as 'json'}).subscribe((response) => {
       this.addLikeMessage = response;
       this.isHaveLike();
     });
@@ -196,7 +196,7 @@ export class RestapiService {
   deleteLike() {
     const id = localStorage.getItem('itemId');
     const headers = new HttpHeaders({Authorization: `Bearer ${this.getTokenFromLocalStorage()}`});
-    this.http.delete('http://localhost:5000/likes/deletelike?id=' + id, {headers, responseType: 'text' as 'json'}).subscribe((response) => {
+    this.http.delete('https://collector-fed.herokuapp.com/likes/deletelike?id=' + id, {headers, responseType: 'text' as 'json'}).subscribe((response) => {
       this.deleteLikeMessage = response;
       this.isHaveLikeMessage = null;
     });
@@ -205,7 +205,7 @@ export class RestapiService {
   isHaveLike() {
     this.isHaveLikeMessage = null;
     const headers = new HttpHeaders({Authorization: `Bearer ${this.getTokenFromLocalStorage()}`});
-    this.http.get('http://localhost:5000/likes/ishavelike?id=' + localStorage.getItem('itemId'),
+    this.http.get('https://collector-fed.herokuapp.com/likes/ishavelike?id=' + localStorage.getItem('itemId'),
       {headers}).subscribe((response) => {
       if (response === true) {
         this.isHaveLikeMessage = response;
@@ -218,34 +218,34 @@ export class RestapiService {
     const idCollection = localStorage.getItem('itemId');
     const authHeader = `Bearer ${this.getTokenFromLocalStorage()}`;
     const body = {comment, idCollection, authHeader};
-    this.http.post('http://localhost:5000/comments/addcomment', body, {responseType: 'text' as 'json'}).subscribe((response) => {
+    this.http.post('https://collector-fed.herokuapp.com/comments/addcomment', body, {responseType: 'text' as 'json'}).subscribe((response) => {
       this.addCommentMessage = response;
       this.getCommentsByItemId();
     });
   }
 
   deleteComment(idCom) {
-    this.http.delete('http://localhost:5000/comments/deletecomment?id=' + idCom, {responseType: 'text' as 'json'}).subscribe((response) => {
+    this.http.delete('https://collector-fed.herokuapp.com/comments/deletecomment?id=' + idCom, {responseType: 'text' as 'json'}).subscribe((response) => {
       this.deleteCommentMessage = response;
       this.getCommentsByItemId();
     });
   }
 
   getAllComments() {
-    this.http.get('http://localhost:5000/comments/allcomments').subscribe((response) => {
+    this.http.get('https://collector-fed.herokuapp.com/comments/allcomments').subscribe((response) => {
         this.allComments = response;
     });
   }
   getCommentsByItemId() {
     const idCollection = localStorage.getItem('itemId');
-    this.http.get('http://localhost:5000/comments/getcommentsbyitemid?itemId=' + idCollection).subscribe((response) => {
+    this.http.get('https://collector-fed.herokuapp.com/comments/getcommentsbyitemid?itemId=' + idCollection).subscribe((response) => {
       this.allCommentsByItemId = response;
       this.getCommentsUsersNamesByItemId();
     });
   }
   getCommentsUsersNamesByItemId() {
     const itemId = localStorage.getItem('itemId');
-    this.http.get('http://localhost:5000/comments/getusersnamesbyitem?itemId=' + itemId).subscribe((response) => {
+    this.http.get('https://collector-fed.herokuapp.com/comments/getusersnamesbyitem?itemId=' + itemId).subscribe((response) => {
       this.commentsUsersNamesByItemId = response;
     });
   }

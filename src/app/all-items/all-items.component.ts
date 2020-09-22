@@ -13,7 +13,7 @@ export class AllItemsComponent implements OnInit {
   allItems: any;
   displayedColumns1: string[] = ['picture', 'topic', 'name', 'country', 'release', 'cost', 'info', 'button'];
   constructor(private http: HttpClient, public svc: SearchServiceService, public service: RestapiService) {
-    this.http.get('http://localhost:5000/collection/allitems').subscribe(result => {
+    this.http.get('https://collector-fed.herokuapp.com/collection/allitems').subscribe(result => {
       this.allItems = result;
     });
   }

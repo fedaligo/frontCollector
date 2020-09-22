@@ -22,17 +22,17 @@ export class MainComponent {
   panelOpenState = false;
   displayedColumns: string[] = ['login', 'topic', 'count', 'button'];
   displayedColumns1: string[] = ['picture', 'topic', 'name', 'country', 'release', 'cost', 'info', 'button'];
-  lastThreeItems: LastThreeItems[];
-  greatestCollections: GreatestCollections[];
-  allTags: Tags[];
+  lastThreeItems: any;
+  greatestCollections: any;
+  allTags: any;
   constructor(private http: HttpClient, public svc: SearchServiceService, public service: RestapiService) {
-    this.http.get<LastThreeItems[]>('http://localhost:5000/collection/lastthreeitems').subscribe(result => {
+    this.http.get('https://collector-fed.herokuapp.com/collection/lastthreeitems').subscribe(result => {
       this.lastThreeItems = result;
     });
-    this.http.get<GreatestCollections[]>('http://localhost:5000/collection/threegreatestcollections').subscribe( result => {
+    this.http.get('https://collector-fed.herokuapp.com/collection/threegreatestcollections').subscribe( result => {
       this.greatestCollections = result;
     });
-    this.http.get<Tags[]>('http://localhost:5000/tags/alltags').subscribe(result => {
+    this.http.get('https://collector-fed.herokuapp.com/tags/alltags').subscribe(result => {
       this.allTags = result;
     });
   }

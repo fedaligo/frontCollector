@@ -31,7 +31,7 @@ export class SearchServiceService {
       localStorage.removeItem('word');
     }
     localStorage.setItem('word', word);
-    this.http.get('http://localhost:5000/collection/itembyword/' + localStorage.getItem('word')).subscribe((response) => {
+    this.http.get('https://collector-fed.herokuapp.com/collection/itembyword/' + localStorage.getItem('word')).subscribe((response) => {
       this.response = response;
     });
   }
@@ -40,12 +40,12 @@ export class SearchServiceService {
       localStorage.removeItem('itemId');
     }
     localStorage.setItem('itemId', itemId);
-    this.http.get('http://localhost:5000/collection/finditem/' + localStorage.getItem('itemId')).subscribe((response) => {
+    this.http.get('https://collector-fed.herokuapp.com/collection/finditem/' + localStorage.getItem('itemId')).subscribe((response) => {
       this.response1 = response;
     });
   }
   findAllItem(){
-    this.http.get('http://localhost:5000/collection/allitems').subscribe((response) => {
+    this.http.get('https://collector-fed.herokuapp.com/collection/allitems').subscribe((response) => {
       this.responseFindAll = response;
     });
   }
@@ -56,14 +56,14 @@ export class SearchServiceService {
     }
     localStorage.setItem('username', username);
     localStorage.setItem('topic', topic);
-    this.http.get('http://localhost:5000/collection/itemsofcollections?topic=' +
+    this.http.get('https://collector-fed.herokuapp.com/collection/itemsofcollections?topic=' +
       localStorage.getItem('topic') + '&username=' + localStorage.getItem('username'))
       .subscribe((response) => {
       this.responseFindItemsByTopicAndUserName = response;
     });
   }
   findCollectionsByUserName(){
-    this.http.get('http://localhost:5000/collection/allcollectionsbyuser?username=' + localStorage.getItem('currentUser'))
+    this.http.get('https://collector-fed.herokuapp.com/collection/allcollectionsbyuser?username=' + localStorage.getItem('currentUser'))
       .subscribe((response) => {
       this.responseFindCollectionsByUserName = response;
     });
@@ -71,7 +71,7 @@ export class SearchServiceService {
 
   findItemsByUserName(){
     this.responseFindItemsOfAnotherUserName = null;
-    this.http.get('http://localhost:5000/collection/allitemsbyuser?username=' + localStorage.getItem('currentUser'))
+    this.http.get('https://collector-fed.herokuapp.com/collection/allitemsbyuser?username=' + localStorage.getItem('currentUser'))
       .subscribe((response) => {
         this.responseFindItemsByUserName = response;
       });
@@ -79,7 +79,7 @@ export class SearchServiceService {
 
   findItemsOfAnotherUserName(userName){
     localStorage.setItem('anotherUserName', userName);
-    this.http.get('http://localhost:5000/collection/allitemsbyuser?username=' + userName)
+    this.http.get('https://collector-fed.herokuapp.com/collection/allitemsbyuser?username=' + userName)
       .subscribe((response) => {
         this.responseFindItemsOfAnotherUserName = response;
       });
@@ -88,7 +88,7 @@ export class SearchServiceService {
     return localStorage.getItem('anotherUserName');
   }
   findTagsNames(){
-    this.http.get<string[]>('http://localhost:5000/tags/tagsnames?id=' + localStorage.getItem('itemId'))
+    this.http.get<string[]>('https://collector-fed.herokuapp.com/tags/tagsnames?id=' + localStorage.getItem('itemId'))
       .subscribe((response) => {
         this.tagsNames = response;
       });

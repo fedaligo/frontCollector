@@ -12,7 +12,7 @@ export class AllCollectionsComponent implements OnInit {
   allCollections: any;
   displayedColumns: string[] = ['login', 'topic', 'count', 'button'];
   constructor(private http: HttpClient, public svc: SearchServiceService, public service: RestapiService) {
-    this.http.get('http://localhost:5000/collection/allcollections').subscribe(result => {
+    this.http.get('https://collector-fed.herokuapp.com/collection/allcollections').subscribe(result => {
       this.allCollections = result;
     });
   }
