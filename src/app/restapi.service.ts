@@ -6,6 +6,7 @@ import {Users} from './entity/users';
   providedIn: 'root'
 })
 export class RestapiService {
+  public isChecked: boolean;
   public token: any;
   public id: any;
   public anotherId: any;

@@ -12,10 +12,10 @@ import {RestapiService} from './restapi.service';
 export class AppComponent {
   token: any;
   value = '';
-  isChecked: boolean;
+  public isChecked = true;
   mycolor: string[] = ['dark theme', 'light theme'];
   constructor(public svc: SearchServiceService, public service: RestapiService) {
-    if (this.getIsChecked() === null){
+    if (this.getIsChecked() !== 'true' && this.getIsChecked() !== 'false'){
       localStorage.setItem('isChecked', 'true');
     }
     this.setIsChecked();
@@ -52,9 +52,15 @@ export class AppComponent {
     }
   }
   getColorTolbar(){
+    if (localStorage.getItem('currentColorTolbar') === null){
+      localStorage.setItem('currentColorTolbar', 'accent');
+    }
     return localStorage.getItem('currentColorTolbar');
   }
   getColorBackGround(){
+    if (localStorage.getItem('currentColorBackGround') === null){
+      localStorage.setItem('currentColorBackGround', 'bg1');
+    }
     return localStorage.getItem('currentColorBackGround');
   }
   getIsChecked(){
