@@ -1,14 +1,18 @@
 {
   "name": "front-collector",
   "version": "0.0.0",
+  "engines": {
+    "node": "12.18.3",
+    "npm": "6.14.6"
+  },
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build --prod",
+    "start": "node server.js",
+    "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ng build --prod"
+    "postinstall": "ng build --aot --prod"
   },
   "private": true,
   "dependencies": {
