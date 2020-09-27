@@ -69,5 +69,8 @@ export class AppComponent {
   getCurrentUserName(){
     return localStorage.getItem('currentUser');
   }
+  cleanAnotherUser(){
+    this.svc.responseFindItemsOfAnotherUserName = null;
+  }
 }
 

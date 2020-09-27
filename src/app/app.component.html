@@ -41,7 +41,7 @@
       <span class="example-spacer"></span>
       <div *ngIf="service.getTokenFromLocalStorage()">
         <button mat-flat-button [color]="getColorTolbar()"
-                [routerLink]="['/myitems']" (click)="svc.findItemsByUserName()">
+                [routerLink]="['/myitems']" (click)="svc.findItemsByUserName(); cleanAnotherUser()">
           My items</button>
         <button mat-flat-button [color]="getColorTolbar()"
                 [routerLink]="['/mycollections']" (click)="svc.findCollectionsByUserName()">
