@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+
 import {SearchServiceService} from '../search-service.service';
 import {RestapiService} from '../restapi.service';
 

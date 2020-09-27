@@ -1,18 +1,13 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Items} from './entity/items';
-import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SearchServiceService {
   value = '';
-  public tagsByItemId: any;
-  public searchedWord: string;
-  public searchedId: bigint;
   public response: any = this.findInfoByWord(localStorage.getItem('word'));
-  public response1:any = this.findItemById(localStorage.getItem('itemId'));
+  public response1: any = this.findItemById(localStorage.getItem('itemId'));
   public responseFindAll: any;
   public responseFindItemsByTopicAndUserName: any = this.findItemByTopicAndUserName(localStorage.getItem('topic'),
     localStorage.getItem('username'));
@@ -46,7 +41,7 @@ export class SearchServiceService {
     });
   }
   findAllItem(){
-    this.http.get('https://collector-fed.herokuapp.com/collection/allitems').subscribe((response) => {
+    this.http.get('http://collector-fed.herokuapp.com/collection/allitems').subscribe((response) => {
       this.responseFindAll = response;
     });
   }
@@ -92,12 +87,6 @@ export class SearchServiceService {
     this.http.get<string[]>('https://collector-fed.herokuapp.com/tags/tagsnames?id=' + localStorage.getItem('itemId'))
       .subscribe((response: string[]) => {
         this.tagsNames = response;
-      });
-  }
-  findTagsIdByItemId(){
-    this.http.get<number[]>('https://collector-fed.herokuapp.com/tags/tagsidbyitemid?id=' + localStorage.getItem('itemId'))
-      .subscribe((response) => {
-        this.tagsByItemId = response;
       });
   }
 }

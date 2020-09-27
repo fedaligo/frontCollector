@@ -19,14 +19,6 @@ import {map, startWith} from 'rxjs/operators';
 export class CreateItemComponent implements OnInit {
   @ViewChild('tagsInput') tagsInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
-  item: Items;
-  tags: any;
-  userName: any;
-  badges: any;
-  books: any;
-  coins: any;
-  stamps: any;
-  wine: any;
   cloudinaryResponse: any;
   numberPatern = '^[0-9]+$';
   latinPatern = '^[a-zA-Z0-9\\s]+$';

@@ -3,7 +3,6 @@ import {FormControl, Validators} from '@angular/forms';
 import {SearchServiceService} from '../search-service.service';
 import {RestapiService} from '../restapi.service';
 import {MatAutocomplete, MatAutocompleteSelectedEvent} from '@angular/material/autocomplete';
-import {Items} from '../entity/items';
 import {COMMA, ENTER, SPACE} from '@angular/cdk/keycodes';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
@@ -17,29 +16,12 @@ import {MatChipInputEvent} from '@angular/material/chips';
 })
 export class EditItemComponent implements OnInit {@ViewChild('tagsInput') tagsInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
-  item: Items;
-  tags: any;
-  userName: any;
-  badges: any;
-  books: any;
-  coins: any;
-  stamps: any;
-  wine: any;
   cloudinaryResponse: any;
   numberPatern = '^[0-9]+$';
   latinPatern = '^[a-zA-Z0-9\\s]+$';
-  latinFormControl = new FormControl('', [
-    Validators.pattern(this.latinPatern),
-  ]);
   formControl = new FormControl('', [
     Validators.required,
     Validators.pattern(this.latinPatern),
-  ]);
-  numberFormControl = new FormControl('', [
-    Validators.pattern(this.numberPatern),
-  ]);
-  topicFormControl = new FormControl('', [
-    Validators.required,
   ]);
   loginFormControl = new FormControl('', [
     Validators.required,
@@ -130,11 +112,9 @@ export class EditItemComponent implements OnInit {@ViewChild('tagsInput') tagsIn
   add(event: MatChipInputEvent): void {
     const input = event.input;
     const value = event.value;
-    // Add our tag
     if ((value || '').trim()) {
       this.myTags.push(value.trim());
     }
-    // Reset the input value
     if (input) {
       input.value = '';
     }

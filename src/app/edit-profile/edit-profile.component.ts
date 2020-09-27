@@ -31,8 +31,6 @@ export class EditProfileComponent implements OnInit {
   updateUser(){
     this.service.updateUser(this.roleUser);
   }
-
-
   ngOnInit(): void {
   }
 

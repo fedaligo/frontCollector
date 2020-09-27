@@ -27,10 +27,14 @@ export class RegistrationComponent implements OnInit {
     Validators.email,
   ]);
   constructor(public service: RestapiService) {
-    this.service.registrationMessage = '';
+    this.service.registrationMessage = null;
   }
   doRegistration(){
     this.service.registration(this.userName, this.password, this.mail);
+    this.doLogin();
+  }
+  doLogin(){
+    const resp = this.service.login(this.userName, this.password);
   }
   ngOnInit(): void {
   }

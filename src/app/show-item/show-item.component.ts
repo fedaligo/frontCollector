@@ -19,7 +19,7 @@ export class ShowItemComponent {
   displayedColumns: string[] = ['column', 'info'];
   displayedColumns1: string[] = [ 'data', 'comment', 'button'];
   comment: any;
-  constructor(private http: HttpClient, public svc: SearchServiceService, public service: RestapiService) {
+  constructor(public svc: SearchServiceService, public service: RestapiService) {
     svc.findTagsNames();
     service.isOwnerOrAdmin();
     service.isHaveLike();

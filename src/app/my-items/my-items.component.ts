@@ -11,7 +11,7 @@ import {HttpClient} from '@angular/common/http';
 export class MyItemsComponent implements OnInit {
   allItems: any;
   displayedColumns1: string[] = ['picture', 'topic', 'name', 'country', 'release', 'cost', 'info', 'button'];
-  constructor(private http: HttpClient, public svc: SearchServiceService, public service: RestapiService) {
+  constructor(public svc: SearchServiceService, public service: RestapiService) {
   }
   getCurrentUserName(){
     return localStorage.getItem('currentUser');

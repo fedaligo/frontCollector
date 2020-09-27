@@ -18,7 +18,6 @@ export interface Tile {
   styleUrls: ['./main.component.css']
 })
 export class MainComponent {
-
   panelOpenState = false;
   displayedColumns: string[] = ['login', 'topic', 'count', 'button'];
   displayedColumns1: string[] = ['picture', 'topic', 'name', 'country', 'release', 'cost', 'info', 'button'];
