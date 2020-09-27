@@ -8,10 +8,11 @@ import {Observable} from 'rxjs';
 })
 export class SearchServiceService {
   value = '';
+  public tagsByItemId: any;
   public searchedWord: string;
   public searchedId: bigint;
   public response: any = this.findInfoByWord(localStorage.getItem('word'));
-  public response1: any = this.findItemById(localStorage.getItem('itemId'));
+  public response1:any = this.findItemById(localStorage.getItem('itemId'));
   public responseFindAll: any;
   public responseFindItemsByTopicAndUserName: any = this.findItemByTopicAndUserName(localStorage.getItem('topic'),
     localStorage.getItem('username'));
@@ -89,8 +90,14 @@ export class SearchServiceService {
   }
   findTagsNames(){
     this.http.get<string[]>('https://collector-fed.herokuapp.com/tags/tagsnames?id=' + localStorage.getItem('itemId'))
-      .subscribe((response) => {
+      .subscribe((response: string[]) => {
         this.tagsNames = response;
+      });
+  }
+  findTagsIdByItemId(){
+    this.http.get<number[]>('https://collector-fed.herokuapp.com/tags/tagsidbyitemid?id=' + localStorage.getItem('itemId'))
+      .subscribe((response) => {
+        this.tagsByItemId = response;
       });
   }
 }

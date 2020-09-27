@@ -1,11 +1,44 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Users} from './entity/users';
+import {Items} from './entity/items';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RestapiService {
+  public updateItemMessage: any;
+  public collectionId: any;
+  public badgesId: any;
+  public booksId: any;
+  public coinsId: any;
+  public stampsId: any;
+  public wineId: any;
+  public name: any;
+  public topic: any;
+  public picture: any;
+  public cost: any = 0;
+  public info: any;
+  public country: any;
+  public release: any = 2020;
+  public itemsUserName = localStorage.getItem('itemsUserName');
+  public material: any;
+  public badgesKind: any;
+  public fastening: any;
+  public author: any;
+  public pages: any = 0;
+  public publishingHouse: any;
+  public coinsKind: any;
+  public size: any = 0;
+  public metal: any;
+  public perforation: any = 'false';
+  public value: any = 0;
+  public color: any;
+  public alcohol: any = 0;
+  public sugar: any = 0;
+  public wineKind: any;
+  public tags: string[];
+  public createItemMessage: any;
   public isChecked: boolean;
   public token: any;
   public id: any;
@@ -30,12 +63,13 @@ export class RestapiService {
   public allComments: any;
   public allCommentsByItemId: any;
   public commentsUsersNamesByItemId: any;
-  public ownerUserName: any = localStorage.getItem('ownerName') ;
+  public ownerUserName: any = localStorage.getItem('ownerName');
   public backGroundColor: any = localStorage.getItem('currentColorBackGround');
   public responseUserByUserName: any;
   public responseAnotherUserByUserName: any = this.anotherUserByUserName(this.getAnotherUserName());
   public updateMessage: any;
   public userProfile = ['ID:', 'USERNAME:', 'PASSWORD:', 'MAIL:', 'ROLE:', 'COUNT OF ITEMS:'];
+
   constructor(private http: HttpClient) {
   }
 
@@ -43,7 +77,10 @@ export class RestapiService {
     this.message = '';
     const body = {userName, password};
     const headers = new HttpHeaders({Authorization: 'Basic ' + btoa(userName + ':' + password)});
-    this.http.post('https://collector-fed.herokuapp.com/users/authenticate', body, {headers, responseType: 'text' as 'json'}).subscribe((response) => {
+    this.http.post('https://collector-fed.herokuapp.com/users/authenticate', body, {
+      headers,
+      responseType: 'text' as 'json'
+    }).subscribe((response) => {
 
       if (response !== '') {
         this.token = response;
@@ -86,7 +123,10 @@ export class RestapiService {
 
   getRole() {
     const headers = new HttpHeaders({Authorization: `Bearer ${this.getTokenFromLocalStorage()}`});
-    this.http.get('https://collector-fed.herokuapp.com/users/usersrole', {headers, responseType: 'text' as 'json'}).subscribe((response) => {
+    this.http.get('https://collector-fed.herokuapp.com/users/usersrole', {
+      headers,
+      responseType: 'text' as 'json'
+    }).subscribe((response) => {
       if (response === '[admin]') {
         this.role = response;
         localStorage.setItem('roleAdmin', this.role);
@@ -101,19 +141,19 @@ export class RestapiService {
   registration(userName: string, password: string, mail: string) {
     const body = {userName, password, mail};
     this.http.post('https://collector-fed.herokuapp.com/users/registration', body, {responseType: 'text' as 'json'}).subscribe((response) => {
-      if (response !== ''){
+      if (response !== '') {
         this.registrationMessage = response;
       }
     });
   }
 
   updateUser(role: string) {
-    if (this.userName !== this.updateUserName){
+    if (this.userName !== this.updateUserName) {
       this.logout();
     }
     const body = {userId: this.id, userName: this.updateUserName, password: this.password, mail: this.mail, usersRole: role};
     this.http.put('https://collector-fed.herokuapp.com/users/updateuser', body, {responseType: 'text' as 'json'}).subscribe((response) => {
-      if (response !== ''){
+      if (response !== '') {
         this.updateMessage = response;
         this.userByUserName();
       }
@@ -121,9 +161,15 @@ export class RestapiService {
   }
 
   updateAnotherUser(role: string) {
-    const body = {userId: this.anotherId, userName: this.updateAnotherUserName, password: this.password, mail: this.anotherMail, usersRole: role};
+    const body = {
+      userId: this.anotherId,
+      userName: this.updateAnotherUserName,
+      password: this.password,
+      mail: this.anotherMail,
+      usersRole: role
+    };
     this.http.put('https://collector-fed.herokuapp.com/users/updateuser', body, {responseType: 'text' as 'json'}).subscribe((response) => {
-      if (response !== ''){
+      if (response !== '') {
         this.updateMessage = response;
         localStorage.removeItem('anotherUserName');
         localStorage.setItem('anotherUserName', this.updateAnotherUserName);
@@ -134,7 +180,10 @@ export class RestapiService {
 
   deleteUser(id) {
     const headers = new HttpHeaders({Authorization: `Bearer ${this.getTokenFromLocalStorage()}`});
-    this.http.delete('https://collector-fed.herokuapp.com/users/delete/' + id, {headers, responseType: 'text' as 'json'}).subscribe((response) => {
+    this.http.delete('https://collector-fed.herokuapp.com/users/delete/' + id, {
+      headers,
+      responseType: 'text' as 'json'
+    }).subscribe((response) => {
       this.deleteMessage = response;
       this.getAllUsers();
     });
@@ -153,8 +202,8 @@ export class RestapiService {
 
   ownerName() {
     this.http.get('https://collector-fed.herokuapp.com/users/ownername?id=' + localStorage.getItem('itemId'), {responseType: 'text' as 'json'}).subscribe((response) => {
-        this.ownerUserName = response;
-        localStorage.setItem('ownerName', this.ownerUserName);
+      this.ownerUserName = response;
+      localStorage.setItem('ownerName', this.ownerUserName);
     });
   }
 
@@ -176,10 +225,12 @@ export class RestapiService {
       this.anotherId = this.responseAnotherUserByUserName.id;
     });
   }
-  getAnotherUserName(){
+
+  getAnotherUserName() {
     return localStorage.getItem('anotherUserName');
   }
-  setMailLocalStorage(){
+
+  setMailLocalStorage() {
     localStorage.setItem('mail', this.mail);
   }
 
@@ -196,7 +247,10 @@ export class RestapiService {
   deleteLike() {
     const id = localStorage.getItem('itemId');
     const headers = new HttpHeaders({Authorization: `Bearer ${this.getTokenFromLocalStorage()}`});
-    this.http.delete('https://collector-fed.herokuapp.com/likes/deletelike?id=' + id, {headers, responseType: 'text' as 'json'}).subscribe((response) => {
+    this.http.delete('https://collector-fed.herokuapp.com/likes/deletelike?id=' + id, {
+      headers,
+      responseType: 'text' as 'json'
+    }).subscribe((response) => {
       this.deleteLikeMessage = response;
       this.isHaveLikeMessage = null;
     });
@@ -233,9 +287,10 @@ export class RestapiService {
 
   getAllComments() {
     this.http.get('https://collector-fed.herokuapp.com/comments/allcomments').subscribe((response) => {
-        this.allComments = response;
+      this.allComments = response;
     });
   }
+
   getCommentsByItemId() {
     const idCollection = localStorage.getItem('itemId');
     this.http.get('https://collector-fed.herokuapp.com/comments/getcommentsbyitemid?itemId=' + idCollection).subscribe((response) => {
@@ -243,10 +298,134 @@ export class RestapiService {
       this.getCommentsUsersNamesByItemId();
     });
   }
+
   getCommentsUsersNamesByItemId() {
     const itemId = localStorage.getItem('itemId');
     this.http.get('https://collector-fed.herokuapp.com/comments/getusersnamesbyitem?itemId=' + itemId).subscribe((response) => {
       this.commentsUsersNamesByItemId = response;
+    });
+  }
+
+  createNewItem(tags) {
+    if (this.topic === 'badges'){
+      const body = {
+        name: this.name, topic: this.topic, cost: this.cost, info: this.info,
+        country: this.country, release: this.release, userName: localStorage.getItem('itemsUserName'), material: this.material,
+        badgesKind: this.badgesKind, fastening: this.fastening, tagsName: tags, picture: this.picture
+      };
+      this.http.post('https://collector-fed.herokuapp.com/collection/createbadges', body, {responseType: 'text' as 'json'}).subscribe((response) => {
+        this.createItemMessage = response;
+      });
+    }
+    if (this.topic === 'books'){
+      const body = {
+        name: this.name, topic: this.topic, cost: this.cost, info: this.info,
+        country: this.country, release: this.release, userName: localStorage.getItem('itemsUserName'), author: this.author,
+        pages: this.pages, publishingHouse: this.publishingHouse, tagsName: this.tags, picture: this.picture
+      };
+      this.http.post('https://collector-fed.herokuapp.com/collection/createbooks', body, {responseType: 'text' as 'json'}).subscribe((response) => {
+        this.createItemMessage = response;
+      });
+    }
+    if (this.topic === 'coins'){
+      const body = {
+        name: this.name, topic: this.topic, cost: this.cost, info: this.info,
+        country: this.country, release: this.release, userName: localStorage.getItem('itemsUserName'), coinsKind: this.coinsKind,
+        size: this.size, metal: this.metal, tagsName: this.tags, picture: this.picture
+      };
+      this.http.post('https://collector-fed.herokuapp.com/collection/createcoins', body, {responseType: 'text' as 'json'}).subscribe((response) => {
+        this.createItemMessage = response;
+      });
+    }
+    if (this.topic === 'stamps'){
+      const body = {
+        name: this.name, topic: this.topic, cost: this.cost, info: this.info,
+        country: this.country, release: this.release, userName: localStorage.getItem('itemsUserName'), perforation: this.perforation,
+        value: this.value, color: this.color, tagsName: this.tags, picture: this.picture
+      };
+      this.http.post('https://collector-fed.herokuapp.com/collection/createstamps', body, {responseType: 'text' as 'json'}).subscribe((response) => {
+        this.createItemMessage = response;
+      });
+    }
+    if (this.topic === 'wine'){
+      const body = {
+        name: this.name, topic: this.topic, cost: this.cost, info: this.info,
+        country: this.country, release: this.release, userName: localStorage.getItem('itemsUserName'), alcohol: this.alcohol,
+        sugar: this.sugar, wineKind: this.wineKind, tagsName: this.tags, picture: this.picture
+      };
+      this.http.post('https://collector-fed.herokuapp.com/collection/createwine', body, {responseType: 'text' as 'json'}).subscribe((response) => {
+        this.createItemMessage = response;
+      });
+    }
+  }
+  setItemsUserName(name){
+    localStorage.removeItem('itemsUserName');
+    this.itemsUserName = name;
+    localStorage.setItem('itemsUserName', name);
+  }
+  updateNewItem(tags) {
+    if (this.topic === 'badges'){
+      const body = {
+        name: this.name, topic: this.topic, cost: this.cost, info: this.info,
+        country: this.country, release: this.release, userName: localStorage.getItem('itemsUserName'), material: this.material,
+        badgesKind: this.badgesKind, fastening: this.fastening, tagsName: tags, picture: this.picture, collectionId: this.collectionId,
+        badgesId: this.badgesId
+      };
+      this.http.put('https://collector-fed.herokuapp.com/collection/updatebadges', body, {responseType: 'text' as 'json'}).subscribe((response) => {
+        this.updateItemMessage = response;
+      });
+    }
+    if (this.topic === 'books'){
+      const body = {
+        name: this.name, topic: this.topic, cost: this.cost, info: this.info,
+        country: this.country, release: this.release, userName: localStorage.getItem('itemsUserName'), author: this.author,
+        pages: this.pages, publishingHouse: this.publishingHouse, tagsName: this.tags, picture: this.picture,
+        collectionId: this.collectionId, booksId: this.booksId
+      };
+      this.http.put('https://collector-fed.herokuapp.com/collection/updatebooks', body, {responseType: 'text' as 'json'}).subscribe((response) => {
+        this.updateItemMessage = response;
+      });
+    }
+    if (this.topic === 'coins'){
+      const body = {
+        name: this.name, topic: this.topic, cost: this.cost, info: this.info,
+        country: this.country, release: this.release, userName: localStorage.getItem('itemsUserName'), coinsKind: this.coinsKind,
+        size: this.size, metal: this.metal, tagsName: this.tags, picture: this.picture, collectionId: this.collectionId,
+        coinsId: this.coinsId
+      };
+      this.http.put('https://collector-fed.herokuapp.com/collection/updatecoins', body, {responseType: 'text' as 'json'}).subscribe((response) => {
+        this.updateItemMessage = response;
+      });
+    }
+    if (this.topic === 'stamps'){
+      const body = {
+        name: this.name, topic: this.topic, cost: this.cost, info: this.info,
+        country: this.country, release: this.release, userName: localStorage.getItem('itemsUserName'), perforation: this.perforation,
+        value: this.value, color: this.color, tagsName: this.tags, picture: this.picture, collectionId: this.collectionId,
+        stampsId: this.stampsId
+      };
+      this.http.put('https://collector-fed.herokuapp.com/collection/updatestamps', body, {responseType: 'text' as 'json'}).subscribe((response) => {
+        this.updateItemMessage = response;
+      });
+    }
+    if (this.topic === 'wine'){
+      const body = {
+        name: this.name, topic: this.topic, cost: this.cost, info: this.info,
+        country: this.country, release: this.release, userName: localStorage.getItem('itemsUserName'), alcohol: this.alcohol,
+        sugar: this.sugar, wineKind: this.wineKind, tagsName: this.tags, picture: this.picture, collectionId: this.collectionId,
+        wineId: this.wineId
+      };
+      this.http.put('https://collector-fed.herokuapp.com/collection/updatewine', body, {responseType: 'text' as 'json'}).subscribe((response) => {
+        this.updateItemMessage = response;
+      });
+    }
+  }
+
+  deleteItem(id) {
+    this.http.delete('https://collector-fed.herokuapp.com/collection/deleteitem/' + id, {
+      responseType: 'text' as 'json'
+    }).subscribe((response) => {
+      this.deleteMessage = response;
     });
   }
 }

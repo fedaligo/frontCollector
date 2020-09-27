@@ -1,4 +1,13 @@
 
+
+<div *ngIf="service.deleteMessage" id="openModal" class="modalDialog">
+  <div>
+    <a href="#close" title="Close" class="close" (click)="cleanMessage()" [routerLink]="['']" >X</a>
+    <h2>Deleting message</h2>
+    <p>Item of collection was deleted.</p>
+  </div>
+</div>
+
 <h1><b >LAST ADDED ITEMS:</b></h1>
 <div class="container">
   <mat-table [dataSource]="lastThreeItems" class="mat-elevation-z8">

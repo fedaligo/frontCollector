@@ -3,10 +3,10 @@ export interface Items {
   name: string;
   topic: string;
   picture: string;
-  cost: bigint;
+  cost: string;
   info: string;
   country: string;
-  release: bigint;
+  release: string;
   badges: {
     id: bigint;
     material: string;
@@ -19,7 +19,7 @@ export interface Items {
   books: {
     id: bigint;
     author: string;
-    pages: bigint;
+    pages: string;
     publishingHouse: string;
     booksTags: {
       id: bigint;
@@ -28,7 +28,7 @@ export interface Items {
   coins: {
     id: bigint;
     kind: string;
-    size: bigint;
+    size: string;
     metal: string;
     coinsTags: {
       id: bigint;
@@ -36,8 +36,8 @@ export interface Items {
   };
   stamps: {
     id: bigint;
-    perforation: boolean;
-    value: bigint;
+    perforation: string;
+    value: string;
     color: string;
     stampsTags: {
       id: bigint;
@@ -45,8 +45,8 @@ export interface Items {
   };
   wine: {
     id: bigint;
-    alcohol: bigint;
-    sugar: bigint;
+    alcohol: string;
+    sugar: string;
     kind: string;
     wineTags: {
       id: bigint;

@@ -1,0 +1,149 @@
+<h1>Create new item:</h1>
+<mat-form-field class="example-full-width">
+  <input matInput placeholder="ItemName" maxlength="50" type="text"
+         [formControl]="formControl"
+         [(ngModel)]="service.name">
+</mat-form-field>
+<mat-form-field class="example-full-width">
+  <input matInput placeholder="Cost (usd,$)" type="number" [(ngModel)]="service.cost" [formControl]="numberFormControl">
+</mat-form-field>
+<mat-form-field class="example-full-width">
+  <input matInput placeholder="info" maxlength="50" type="text" [(ngModel)]="service.info" [formControl]="latinFormControl">
+</mat-form-field>
+<mat-form-field class="example-full-width">
+  <input matInput placeholder="country" maxlength="50" type="text" [(ngModel)]="service.country" [formControl]="latinFormControl">
+</mat-form-field>
+<mat-form-field class="example-full-width">
+  <input matInput placeholder="Release (year)" type="number" max="2020" min="1500" [value]="2020" [formControl]="numberFormControl"
+         [(ngModel)]="service.release">
+</mat-form-field>
+<mat-form-field class="example-full-width">
+  <input matInput placeholder="userName" maxlength="50" type="text" readonly [formControl]="loginFormControl"
+         [(ngModel)]="service.itemsUserName">
+</mat-form-field>
+<label class="example-radio-group"><h3>Choose topic to add more info:</h3></label>
+<mat-radio-group
+  class="example-radio-group"
+  [(ngModel)]="service.topic" [formControl]="topicFormControl">
+  <mat-radio-button class="example-radio-button" *ngFor="let option of options" [value]="option">
+    {{option}}
+  </mat-radio-button>
+</mat-radio-group>
+<div [hidden]="service.topic != 'badges'">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="material" maxlength="50" type="text" [(ngModel)]="service.material" [formControl]="latinFormControl">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="badgesKind" maxlength="50" type="text" [(ngModel)]="service.badgesKind" [formControl]="latinFormControl">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="fastening" maxlength="50" type="text" [(ngModel)]="service.fastening" [formControl]="latinFormControl">
+  </mat-form-field>
+</div>
+<div [hidden]="service.topic != 'books'">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="author" maxlength="50" type="text" [(ngModel)]="service.author" [formControl]="latinFormControl">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="pages" maxlength="50" type="number" [(ngModel)]="service.pages" [formControl]="numberFormControl">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="publishingHouse" maxlength="50" type="text" [(ngModel)]="service.publishingHouse" [formControl]="latinFormControl">
+  </mat-form-field>
+</div>
+<div [hidden]="service.topic != 'coins'">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="coinsKind" maxlength="50" type="text" [(ngModel)]="service.coinsKind" [formControl]="latinFormControl">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="size" maxlength="50" type="number" [(ngModel)]="service.size" [formControl]="numberFormControl">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="metal" maxlength="50" type="text" [(ngModel)]="service.metal" [formControl]="latinFormControl">
+  </mat-form-field>
+</div>
+<div [hidden]="service.topic != 'stamps'">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="perforation" maxlength="50" type="text" [(ngModel)]="service.perforation" [formControl]="latinFormControl">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="value" maxlength="50" type="number" [(ngModel)]="service.value" [formControl]="numberFormControl">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="color" maxlength="50" type="text" [(ngModel)]="service.color" [formControl]="latinFormControl">
+  </mat-form-field>
+</div>
+<div [hidden]="service.topic != 'wine'">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="alcohol (%)" maxlength="50" type="number" [(ngModel)]="service.alcohol" [formControl]="numberFormControl">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="sugar" maxlength="50" type="number" [(ngModel)]="service.sugar" [formControl]="numberFormControl">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="wineKind" maxlength="50" type="text" [(ngModel)]="service.wineKind" [formControl]="latinFormControl">
+  </mat-form-field>
+</div>
+<mat-form-field class="example-full-width">
+  <input matInput placeholder="PictureLink" readonly type="text" [formControl]="pictureFormControl"
+         [(ngModel)]="service.picture">
+</mat-form-field>
+<div class="example-full-width">
+  <input type="file" (change)="onFileSelected($event)">
+  <div *ngIf="!picture">
+    <button mat-raised-button class="button-container"disabled>Upload</button>
+  </div>
+  <div *ngIf="picture">
+    <button mat-raised-button class="button-container" color="primary" (click)="onUpload()">Upload</button>
+  </div>
+</div>
+
+
+
+<mat-form-field class="example-chip-list">
+  <mat-chip-list #chipList >
+    <mat-chip
+      *ngFor="let tag of myTags"
+      [selectable]="selectable"
+      [removable]="removable"
+      (removed)="remove(tag)">
+      {{tag}}
+      <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+    </mat-chip>
+    <input
+      placeholder="Tags"
+      #tagsInput
+      [formControl]="tagsCtrl"
+      [matAutocomplete]="auto"
+      [matChipInputFor]="chipList"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      (matChipInputTokenEnd)="add($event)" [formControl]="latinFormControl">
+  </mat-chip-list>
+  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+    <mat-option *ngFor="let tag of filteredTags | async" [value]="tag">
+      {{tag}}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
+
+
+
+
+<br>
+<div class=".center">
+  <div *ngIf="formControl.hasError('required') || loginFormControl.hasError('required')
+|| pictureFormControl.hasError('required') || formControl.hasError('pattern') || latinFormControl.hasError('pattern')
+|| numberFormControl.hasError('pattern') || topicFormControl.hasError('required')">
+    <button mat-raised-button disabled>SAVE item</button>
+  </div>
+  <div *ngIf="!formControl.hasError('required') && !loginFormControl.hasError('required')
+&& !pictureFormControl.hasError('required') && !formControl.hasError('pattern')
+&& !latinFormControl.hasError('pattern') && !numberFormControl.hasError('pattern')
+&& !topicFormControl.hasError('required')">
+    <button mat-raised-button color="primary" (click)="createNewItem()">
+      SAVE item
+    </button>
+  </div>
+  {{service.createItemMessage}}
+</div>
+<br>

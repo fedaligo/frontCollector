@@ -4,31 +4,31 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AdminComponent } from './admin/admin.component';
 
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule} from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import {MatTableModule} from '@angular/material/table';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { MatTableModule} from '@angular/material/table';
+import { MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { CdkTableModule } from '@angular/cdk/table';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatInputModule} from '@angular/material/input';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatListModule} from '@angular/material/list';
-import {MatChipsModule} from '@angular/material/chips';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatCardModule} from '@angular/material/card';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { MatInputModule} from '@angular/material/input';
+import { MatExpansionModule} from '@angular/material/expansion';
+import { MatGridListModule} from '@angular/material/grid-list';
+import { MatListModule} from '@angular/material/list';
+import { MatChipsModule} from '@angular/material/chips';
+import { MatFormFieldModule} from '@angular/material/form-field';
+import { MatCardModule} from '@angular/material/card';
 
-import {Routes, RouterModule} from '@angular/router';
+import { Routes, RouterModule} from '@angular/router';
 import { MainComponent } from './main/main.component';
 import { SignComponent } from './sign/sign.component';
 import { SearchListComponent } from './search-list/search-list.component';
 import { ShowItemComponent } from './show-item/show-item.component';
 
-import {SearchServiceService} from './search-service.service';
+import { SearchServiceService} from './search-service.service';
 import { RestapiService} from './restapi.service';
 import { AllCollectionsComponent } from './all-collections/all-collections.component';
 import { AllItemsComponent } from './all-items/all-items.component';
@@ -37,11 +37,16 @@ import { MyCollectionsComponent } from './my-collections/my-collections.componen
 import { ItemsComponent } from './items/items.component';
 import { SettingsComponent } from './settings/settings.component';
 import { RegistrationComponent } from './registration/registration.component';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatAutocompleteModule} from '@angular/material/autocomplete';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { ShowUserProfileComponent } from './show-user-profile/show-user-profile.component';
 import { ShowAnotherUserProfileComponent } from './show-another-user-profile/show-another-user-profile.component';
 import { AboutComponent } from './about/about.component';
+import { EditItemComponent } from './edit-item/edit-item.component';
+import { CreateItemComponent } from './create-item/create-item.component';
+import { MatRadioModule} from '@angular/material/radio';
+import { CloudinaryModule } from '@cloudinary/angular-5.x';
+import * as  Cloudinary from 'cloudinary-core';
 
 
 const appRoutes: Routes = [
@@ -59,6 +64,8 @@ const appRoutes: Routes = [
   { path: 'mycollections', component: MyCollectionsComponent},
   { path: 'myitems', component: MyItemsComponent},
   { path: 'items', component: ItemsComponent},
+  { path: 'createitem', component: CreateItemComponent},
+  { path: 'edititem', component: EditItemComponent},
   { path: 'allcollections', component: AllCollectionsComponent},
   { path: 'about', component: AboutComponent},
   { path: 'admin', component: AdminComponent}
@@ -82,7 +89,9 @@ const appRoutes: Routes = [
     EditProfileComponent,
     ShowUserProfileComponent,
     ShowAnotherUserProfileComponent,
-    AboutComponent
+    AboutComponent,
+    EditItemComponent,
+    CreateItemComponent
   ],
     imports: [
         BrowserModule,
@@ -105,7 +114,10 @@ const appRoutes: Routes = [
         MatFormFieldModule,
         MatCardModule,
         ReactiveFormsModule,
-        MatAutocompleteModule
+        MatAutocompleteModule,
+        MatRadioModule,
+      CloudinaryModule.forRoot(Cloudinary, { cloud_name: 'hgqm1kjn8',
+      upload_preset: 'front-collector'}),
     ],
   providers: [
     SearchServiceService,

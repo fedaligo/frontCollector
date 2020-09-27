@@ -1,4 +1,7 @@
-
+.info-list{
+  text-align: center;
+  margin-bottom: 1%;
+}
 
 .mylist-coloumn-names {
   margin-left: 1rem;
@@ -8,6 +11,8 @@
 }
 
 .container {
+  margin-left: 25%;
+  width: 50%;
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
@@ -21,9 +26,10 @@
 }
 
 .info-table {
-
+  box-shadow: 0 0 15px;
+  margin-top: 1%;
+  margin-left: 25%;
   width: 50%;
-  align-self: start;
 }
 
 .settingsForTable {
@@ -48,8 +54,8 @@ section {
 }
 
 .example-button-row {
-  display: table-cell;
-  width: 490px;
+margin-right: 4%;
+
 }
 
 .example-button-row .mat-button-base {
@@ -63,18 +69,15 @@ section {
 }
 
 .example-button-container {
-  margin-left: 1rem;
+
+  margin-left: 45%;
   display: flex;
 
 }
 
 .example-form {
-  align-self: start;
-  min-width: 150px;
-  max-width: 100%;
   width: 100%;
   margin-top: 1rem;
-  margin-bottom: 1rem;
 }
 
 .example-full-width {
@@ -82,12 +85,12 @@ section {
 }
 
 .message-container {
-  margin-left: 1rem;
-  display: flex;
-  max-width: 100%;
+  margin-left: 25%;
+  width: 50%;
 }
 
 .comment-table {
+
   width: 80%;
   margin-left: 10%;
   margin-top: 1rem;
@@ -102,5 +105,8 @@ section {
 }
 .button-coloumn{
   flex: 0 0 5%;
+}
+.shadow-line{
+  box-shadow: 0 0 15px;
 }
 

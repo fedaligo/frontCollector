@@ -1,8 +1,32 @@
 
 <h1>{{svc.response1.name}}</h1>
-<mat-list class="mylist-picture">
-  <div><Img src="{{svc.response1.picture}}" Height="400"></div>
-</mat-list>
+<div class="info-list">
+  <Img src="{{svc.response1.picture}}" Height="400">
+</div>
+
+<div class="example-button-container">
+  <div *ngIf="service.getTokenFromLocalStorage()">
+    <div *ngIf="service.isHaveLikeMessage" class="example-button-row">
+      <button mat-fab color="warn" aria-label="Example icon button with a heart icon"
+              (click)="service.deleteLike()">
+        <mat-icon>favorite</mat-icon>
+      </button>
+    </div>
+    <div *ngIf="!service.isHaveLikeMessage" class="example-button-row">
+      <button mat-fab color="grey" aria-label="Example icon button with a heart icon" (click)="service.addLike()">
+        <mat-icon>favorite</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div *ngIf="service.responseIsOwnerOrAdmin" class="example-button-row">
+    <button mat-fab color="primary" aria-label="Example icon button with a delete icon" (click)="svc.findItemById(svc.response1.id)" [routerLink]="['/edititem']">
+      <mat-icon>settings</mat-icon>
+    </button>
+    <button mat-fab color="primary" aria-label="Example icon button with a delete icon" (click)="service.deleteItem(svc.response1.id)" [routerLink]="['']">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+</div>
 <br>
 <table class="info-table">
   <tr>
@@ -111,49 +135,24 @@
     </mat-chip>
   </mat-chip-list>
 </div>
-<section>
-  <div class="example-button-row">
-    <div class="example-flex-container">
-      <div class="example-button-container">
-        <div *ngIf="service.getTokenFromLocalStorage()">
-          <div *ngIf="service.isHaveLikeMessage">
-          <button mat-fab color="warn" aria-label="Example icon button with a heart icon" (click)="service.deleteLike()">
-            <mat-icon>favorite</mat-icon>
-          </button>
-          </div>
-          <div *ngIf="!service.isHaveLikeMessage">
-          <button mat-fab color="grey" aria-label="Example icon button with a heart icon" (click)="service.addLike()">
-            <mat-icon>favorite</mat-icon>
-          </button>
-        </div>
-        </div>
-        <div *ngIf="service.responseIsOwnerOrAdmin">
-          <button mat-fab color="primary" aria-label="Example icon button with a delete icon">
-            <mat-icon>delete</mat-icon>
-          </button>
-          <button mat-fab color="primary" aria-label="Example icon button with a delete icon">
-            <mat-icon>settings</mat-icon>
-          </button>
-        </div>
-      </div>
-    </div>
-    <div *ngIf="service.getTokenFromLocalStorage()" class="message-container">
-      <form class="example-form">
-        <mat-form-field class="example-full-width">
-          <mat-label>Message</mat-label>
-          <input matInput #message maxlength="256" type="text" name="comment" id="comment" [(ngModel)]="comment">
-          <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
-        </mat-form-field>
-      </form>
-      <div class="message-container">
-        <button mat-raised-button color="primary" (click)="addComment()">Send</button>
-      </div>
-    </div>
+
+
+<div *ngIf="service.getTokenFromLocalStorage()" class="message-container">
+  <div class="example-form">
+    <form>
+      <mat-form-field class="example-full-width">
+        <mat-label>Message</mat-label>
+        <input matInput #message maxlength="256" type="text" name="comment" id="comment" [(ngModel)]="comment">
+        <mat-hint align="end">{{message.value.length}} / 256</mat-hint>
+      </mat-form-field>
+    </form>
   </div>
-</section>
+  <button mat-raised-button color="primary" (click)="addComment()" class="example-form">Send</button>
+</div>
+
 
 <table class="comment-table">
-  <tr *ngFor="let element of service.allCommentsByItemId; let i = index">
+  <tr *ngFor="let element of service.allCommentsByItemId; let i = index" class="shadow-line">
     <td width="30%">
       {{service.commentsUsersNamesByItemId[i]}}
       <br>
@@ -162,14 +161,15 @@
     <td width="65%">{{element.comment}}</td>
     <td width="5%">
       <div *ngIf="service.responseIsOwnerOrAdmin">
-        <button mat-button aria-label="Example icon button with a bookmark icon" (click)="service.deleteComment(element.id)" >
+        <button mat-button aria-label="Example icon button with a bookmark icon"
+                (click)="service.deleteComment(element.id)">
           <mat-icon>delete_forever</mat-icon>
         </button>
       </div>
     </td>
   </tr>
 </table>
-
+<br>
 
 
 

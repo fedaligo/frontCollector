@@ -1,4 +1,8 @@
+
 <div *ngIf="!svc.responseFindItemsOfAnotherUserName">
+  <div class="button-center">
+    <button mat-raised-button class="mat-delete" (click)="service.setItemsUserName(getCurrentUserName())" [routerLink]="['/createitem']">Create new item</button>
+  </div>
   <h1><b >ALL ITEMS of user {{getCurrentUserName()}}:</b></h1>
   <div class="container" >
     <mat-table [dataSource]="svc.responseFindItemsByUserName" class="mat-elevation-z8">
@@ -43,6 +47,9 @@
   </div>
 </div>
 <div *ngIf="svc.responseFindItemsOfAnotherUserName">
+  <div class="button-center">
+    <button mat-raised-button class="mat-delete" (click)="service.setItemsUserName(svc.getAnotherUserName())" [routerLink]="['/createitem']">Create new item</button>
+  </div>
   <h1><b >ALL ITEMS of user {{svc.getAnotherUserName()}}:</b></h1>
   <div class="container" >
     <mat-table [dataSource]="svc.responseFindItemsOfAnotherUserName" class="mat-elevation-z8">

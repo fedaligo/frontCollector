@@ -1,4 +1,10 @@
-
+.button-position{
+  text-align: center;
+}
+.mat-delete {
+  background-color: #B22222;
+  color: white;
+}
 .container {
   max-width: 80%;
   margin: 0 auto;
@@ -88,4 +94,9 @@ table {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
   margin-top: 1rem;
   margin-bottom: 1rem;
+}
+
+.button-center{
+  margin-top: 2%;
+  text-align: center;
 }

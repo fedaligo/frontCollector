@@ -39,4 +39,7 @@ export class MainComponent {
   drop(event: CdkDragDrop<Tags[]>) {
     moveItemInArray(this.allTags, event.previousIndex, event.currentIndex);
   }
+  cleanMessage(){
+    this.service.deleteMessage = null;
+  }
 }

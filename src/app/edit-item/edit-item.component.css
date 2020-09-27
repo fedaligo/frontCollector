@@ -1,0 +1,61 @@
+h2{
+  text-align: right;
+  margin-right: 5%;
+}
+
+h1{
+  margin-top: 2%;
+  text-align: center;
+}
+
+.mat-delete {
+  background-color: #B22222;
+  color: white;
+}
+
+.container {
+  text-align: center;
+  margin-top: 3rem;
+
+}
+.info-table {
+  margin-top: 3rem;
+
+  width: 80%;
+}
+.\.center{
+  text-align: center;
+}
+
+.add_bottom{
+  height: 1000px;
+}
+.edit-profile{
+  text-align: center;
+  margin-bottom: 5%;
+}
+.example-full-width {
+  margin-left: 25%;
+
+  width: 50%;
+}
+.example-radio-group {
+  margin-left: 25%;
+
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+
+}
+
+.example-radio-button {
+  margin: 5px;
+}
+
+.button-container{
+  margin-top: 2%;
+}
+.example-chip-list {
+  margin-left: 25%;
+  width: 50%;
+}
