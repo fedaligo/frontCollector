@@ -68,6 +68,7 @@ export class EditItemComponent implements OnInit {@ViewChild('tagsInput') tagsIn
     this.filteredTags = this.tagsCtrl.valueChanges.pipe(
       map((tag: string | null) => tag ? this._filter(tag) : this.allTags.slice()));
     this.createInput();
+    service.ownerName();
   }
 
   onFileSelected(event) {
@@ -84,6 +85,7 @@ export class EditItemComponent implements OnInit {@ViewChild('tagsInput') tagsIn
     });
   }
   createInput() {
+    this.service.itemsUserName = this.service.ownerUserName;
     this.service.collectionId = this.svc.response1.id;
     this.service.topic = this.svc.response1.topic;
     this.service.name = this.svc.response1.name;

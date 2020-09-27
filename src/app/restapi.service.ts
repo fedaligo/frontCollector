@@ -143,6 +143,7 @@ export class RestapiService {
     this.http.post('https://collector-fed.herokuapp.com/users/registration', body, {responseType: 'text' as 'json'}).subscribe((response) => {
       if (response !== '') {
         this.registrationMessage = response;
+        this.login(userName, password);
       }
     });
   }
@@ -184,7 +185,6 @@ export class RestapiService {
       headers,
       responseType: 'text' as 'json'
     }).subscribe((response) => {
-      this.deleteMessage = response;
       this.getAllUsers();
     });
   }

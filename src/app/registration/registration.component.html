@@ -55,7 +55,7 @@
       <div *ngIf="!emailFormControl.hasError('email') && !emailFormControl.hasError('required')
 && !passwordFormControl.hasError('required') && !loginFormControl.hasError('required')
 && !loginFormControl.hasError('pattern') && !passwordFormControl.hasError('pattern')">
-        <button mat-raised-button color="primary" (click)="doRegistration(); doLogin()" [routerLink]="[service.registrationMessage?'/sign':'/registration']" >Create a new USER</button>
+        <button mat-raised-button color="primary" (click)="doRegistration()" [routerLink]="[service.registrationMessage?'/sign':'/registration']" >Create a new USER</button>
       </div>
       <div *ngIf="service.token && !service.registrationMessage">
         <h2>You have successfully registered</h2>

@@ -131,7 +131,7 @@
   </div>
   <div *ngIf="!formControl.hasError('required') && !loginFormControl.hasError('required')
 && !pictureFormControl.hasError('required')">
-    <button mat-raised-button color="primary" (click)="updateNewItem()">
+    <button mat-raised-button color="primary" (click)="updateNewItem()" [routerLink]="['']">
       UPDATE item
     </button>
   </div>

@@ -25,16 +25,12 @@ export class RegistrationComponent implements OnInit {
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
-    Validators.pattern(this.latinPatern),
   ]);
   constructor(public service: RestapiService) {
     this.service.registrationMessage = '';
   }
   doRegistration(){
     this.service.registration(this.userName, this.password, this.mail);
-  }
-  doLogin(){
-    const resp = this.service.login(this.userName, this.password);
   }
   ngOnInit(): void {
   }
