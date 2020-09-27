@@ -1,13 +1,25 @@
 
-
-<div *ngIf="service.deleteMessage" id="openModal" class="modalDialog">
+<div *ngIf="service.deleteMessage"  class="modalDialog">
   <div>
     <a href="#close" title="Close" class="close" (click)="cleanMessage()" [routerLink]="['']" >X</a>
     <h2>Deleting message</h2>
     <p>Item of collection was deleted.</p>
   </div>
 </div>
-
+<div *ngIf="service.createItemMessage"  class="modalDialog">
+  <div>
+    <a href="#close" title="Close" class="close" (click)="cleanMessage()" [routerLink]="['']" >X</a>
+    <h2>Creating message</h2>
+    <p>Item of collection was created.</p>
+  </div>
+</div>
+<div *ngIf="service.updateItemMessage"  class="modalDialog">
+  <div>
+    <a href="#close" title="Close" class="close" (click)="cleanMessage()" [routerLink]="['']" >X</a>
+    <h2>Updating message</h2>
+    <p>Item of collection was updated.</p>
+  </div>
+</div>
 <h1><b >LAST ADDED ITEMS:</b></h1>
 <div class="container">
   <mat-table [dataSource]="lastThreeItems" class="mat-elevation-z8">
@@ -95,7 +107,7 @@
     </mat-chip>
   </mat-chip-list>
 </div>
-
+<br>
 
 
 

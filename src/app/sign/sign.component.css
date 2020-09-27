@@ -31,4 +31,5 @@ input.example-right-align {
 .\.redtext{
   font-size: large;
   color: red;
+  margin-bottom: 3%;
 }

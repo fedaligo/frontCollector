@@ -14,7 +14,7 @@
   <input matInput placeholder="country" maxlength="50" type="text" [(ngModel)]="service.country" [formControl]="latinFormControl">
 </mat-form-field>
 <mat-form-field class="example-full-width">
-  <input matInput placeholder="Release (year)" type="number" max="2020" min="1500" [value]="2020" [formControl]="numberFormControl"
+  <input matInput placeholder="Release (year)" type="number" [formControl]="numberFormControl"
          [(ngModel)]="service.release">
 </mat-form-field>
 <mat-form-field class="example-full-width">
@@ -125,25 +125,36 @@
     </mat-option>
   </mat-autocomplete>
 </mat-form-field>
-
-
-
-
 <br>
 <div class=".center">
   <div *ngIf="formControl.hasError('required') || loginFormControl.hasError('required')
 || pictureFormControl.hasError('required') || formControl.hasError('pattern') || latinFormControl.hasError('pattern')
 || numberFormControl.hasError('pattern') || topicFormControl.hasError('required')">
+
+    <div *ngIf="formControl.hasError('required') || loginFormControl.hasError('required') ||
+ pictureFormControl.hasError('required') || topicFormControl.hasError('required')
+|| loginFormControl.hasError('pattern')" class="red-text">
+      Some fields are <strong>NOT FILLED.</strong>
+    </div>
+
+    <div *ngIf="latinFormControl.hasError('pattern') || formControl.hasError('pattern')
+|| loginFormControl.hasError('pattern')" class="red-text">
+      Only <strong>LATIN LETTERS</strong> or <strong>NUMBERS</strong> can be used.
+    </div>
+
+    <div *ngIf="numberFormControl.hasError('pattern')" class="red-text">
+      Only <strong>NUMBERS</strong> can be used.
+    </div>
+
     <button mat-raised-button disabled>SAVE item</button>
   </div>
   <div *ngIf="!formControl.hasError('required') && !loginFormControl.hasError('required')
 && !pictureFormControl.hasError('required') && !formControl.hasError('pattern')
 && !latinFormControl.hasError('pattern') && !numberFormControl.hasError('pattern')
-&& !topicFormControl.hasError('required')">
-    <button mat-raised-button color="primary" (click)="createNewItem()">
+&& !topicFormControl.hasError('required') && !loginFormControl.hasError('pattern')">
+    <button mat-raised-button color="primary" (click)="createNewItem()" [routerLink]="['']">
       SAVE item
     </button>
   </div>
-  {{service.createItemMessage}}
 </div>
 <br>

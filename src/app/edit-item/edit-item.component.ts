@@ -26,11 +26,24 @@ export class EditItemComponent implements OnInit {@ViewChild('tagsInput') tagsIn
   stamps: any;
   wine: any;
   cloudinaryResponse: any;
+  numberPatern = '^[0-9]+$';
+  latinPatern = '^[a-zA-Z0-9\\s]+$';
+  latinFormControl = new FormControl('', [
+    Validators.pattern(this.latinPatern),
+  ]);
   formControl = new FormControl('', [
+    Validators.required,
+    Validators.pattern(this.latinPatern),
+  ]);
+  numberFormControl = new FormControl('', [
+    Validators.pattern(this.numberPatern),
+  ]);
+  topicFormControl = new FormControl('', [
     Validators.required,
   ]);
   loginFormControl = new FormControl('', [
     Validators.required,
+    Validators.pattern(this.latinPatern),
   ]);
   pictureFormControl = new FormControl('', [
     Validators.required,

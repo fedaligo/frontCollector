@@ -41,5 +41,7 @@ export class MainComponent {
   }
   cleanMessage(){
     this.service.deleteMessage = null;
+    this.service.updateItemMessage = null;
+    this.service.createItemMessage = null;
   }
 }

@@ -10,6 +10,9 @@
         <mat-error *ngIf="loginFormControl.hasError('required')">
           Login is <strong>required</strong>
         </mat-error>
+        <mat-error *ngIf="loginFormControl.hasError('pattern')">
+          Only <strong>LATIN LETTERS</strong> or <strong>NUMBERS</strong> can be used.
+        </mat-error>
       </mat-form-field>
       <br>
       <mat-form-field class="example-full-width">
@@ -23,6 +26,9 @@
         </button>
         <mat-error *ngIf="passwordFormControl.hasError('required')">
           Password is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="loginFormControl.hasError('pattern')">
+          Only <strong>LATIN LETTERS</strong> or <strong>NUMBERS</strong> can be used.
         </mat-error>
       </mat-form-field>
       <br>
@@ -42,16 +48,22 @@
 
       <div *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')
       || !emailFormControl.hasError('email') && emailFormControl.hasError('required')
-      || passwordFormControl.hasError('required') || loginFormControl.hasError('required')">
+      || passwordFormControl.hasError('required') || loginFormControl.hasError('required') ||
+ loginFormControl.hasError('pattern') || passwordFormControl.hasError('pattern')">
         <button mat-raised-button disabled>Create a new USER</button>
       </div>
       <div *ngIf="!emailFormControl.hasError('email') && !emailFormControl.hasError('required')
-&& !passwordFormControl.hasError('required') && !loginFormControl.hasError('required')">
-        <button mat-raised-button color="primary" (click)="doRegistration()" [routerLink]="[service.registrationMessage?'/sign':'/registration']" >Create a new USER</button>
+&& !passwordFormControl.hasError('required') && !loginFormControl.hasError('required')
+&& !loginFormControl.hasError('pattern') && !passwordFormControl.hasError('pattern')">
+        <button mat-raised-button color="primary" (click)="doRegistration(); doLogin()" [routerLink]="[service.registrationMessage?'/sign':'/registration']" >Create a new USER</button>
+      </div>
+      <div *ngIf="service.token && !service.registrationMessage">
+        <h2>You have successfully registered</h2>
+        <h2>and logged in.</h2>
       </div>
       <div class=".redtext">{{service.registrationMessage}}</div>
     </form>
   </mat-card>
 </div>
-
+<br>
 

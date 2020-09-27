@@ -5,31 +5,44 @@
   <h1>LOGIN:</h1>
   <mat-form-field appearance="fill" >
     <mat-label>Enter your Login</mat-label>
-    <input matInput type="text" name="userName" id="username" [(ngModel)]="userName" >
+    <input matInput type="text" name="userName" id="username" maxlength="50" [(ngModel)]="userName" [formControl]="loginFormControl">
   </mat-form-field>
   <br>
   <h1>PASSWORD:</h1>
   <mat-form-field appearance="fill">
     <mat-label>Enter your password</mat-label>
-    <input matInput type="password" name="password"  [(ngModel)]="password" id="password" [type]="hide ? 'password' : 'text'">
+    <input matInput type="password" name="password"  [(ngModel)]="password" id="password" [type]="hide ? 'password' : 'text'" [formControl]="passwordFormControl">
     <button mat-icon-button matSuffix  (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
       <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </button>
   </mat-form-field>
   <br>
+  <div class=".center">
+    <div *ngIf="loginFormControl.hasError('required') || loginFormControl.hasError('pattern') ||
+ passwordFormControl.hasError('required') || passwordFormControl.hasError('pattern')">
 
-  <nav class="interval">
-    <button mat-raised-button type="submit" name="Login" id="go" value="Login" (click)="doLogin()"  color="primary">Enter</button>
-    <span class="interval"><a routerLink="/registration">Registration</a></span>
-  </nav>
+      <div *ngIf="loginFormControl.hasError('pattern') || passwordFormControl.hasError('pattern') " class=".redtext">
+        Only <strong>LATIN LETTERS</strong> or <strong>NUMBERS</strong> can be used.
+      </div>
+
+      <nav class="interval">
+        <button mat-raised-button disabled  color="primary">Enter</button>
+        <span class="interval"><a routerLink="/registration">Registration</a></span>
+      </nav>
+    </div>
+    <div *ngIf="!loginFormControl.hasError('required') && !loginFormControl.hasError('pattern') &&
+ !passwordFormControl.hasError('required') && !passwordFormControl.hasError('pattern')">
+      <nav class="interval">
+        <button mat-raised-button type="submit" name="Login" id="go" value="Login" (click)="doLogin()"  color="primary">Enter</button>
+        <span class="interval"><a routerLink="/registration">Registration</a></span>
+      </nav>
+    </div>
+  </div>
 </form>
-  <nav>
-    <Img src="https://lh3.googleusercontent.com/pw/ACtC-3eiaTyEjBbyTRs_daUEhb4RomnUGFEYV62R9s8MewtW1ah3GUbZ5wQDEfed7oAR_8w8Up4X2414fC6isAgyTKr665ODa069vF_E7mIIr-HNP8BXOD5-svucEO27FDK_5e_NAGT-FerNLitwxn3fBbzH=s100-no?authuser=0" Height="52" width="52" [routerLink]="['/oauth2/authorization/google']">
-    <Img src="https://lh3.googleusercontent.com/pw/ACtC-3cDtF-d1YgApCuKtrSTEN1unRChJePTl4qHlQl4CQxlqW6EAnnrM94u7IjsZopx-ASLmnBaATdRn-7CAV5XNykt2bnJRFTiOES9z93nSXIJwvEvplyA9ctHxRCweDQHJ7QIyJkXZVy9eBbDnZu_VYLz=s939-no?authuser=0" Height="50" width="50" [routerLink]="['/admin']">
-  </nav>
+  <br>
   <div class=".redtext">{{service.message}}</div>
   <div *ngIf="service.token"><h2>You are successfully logged in</h2></div>
 </mat-card>
 </div>
-
+<br>
 
